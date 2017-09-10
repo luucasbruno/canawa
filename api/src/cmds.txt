@@ -1,0 +1,16 @@
+####################################################################################################
+# URL							| Path	| Command								| Methods
+####################################################################################################
+
+/brands							|		| Command_Brands						| GET,POST,PATCH
+
+/categories						|		| Command_Categories					| GET,POST,PATCH
+
+/clients						|		| Command_Clients						| GET,POST,PATCH
+
+/providers						|		| Command_Providers						| GET,POST,PATCH
+
+/products						|		| Command_Products						| GET,POST
+
+
+
