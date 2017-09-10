@@ -2,6 +2,8 @@
 # URL							| Path	| Command								| Methods
 ####################################################################################################
 
+/auth/login						|		| Command_Auth_Login					| POST
+
 /brands							|		| Command_Brands						| GET,POST,PATCH
 
 /categories						|		| Command_Categories					| GET,POST,PATCH
