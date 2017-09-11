@@ -104,4 +104,14 @@ define('ERROR_PRODUCT___INVALID_CATEGORY_ID', 103);
 define('ERROR_PRODUCT___INVALID_RETAIL_PRICE', 104);
 define('ERROR_PRODUCT___INVALID_WHOLESALER_PRICE', 105);
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Errores relacionados ventas
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
+define('ERROR_SALE___ZERO_PRODUCTS', 200);
+define('ERROR_SALE___INCONSISTENT_IDS_AND_COUNTS', 201);
+define('ERROR_SALE___INVALID_PRODUCT_ID', 202);
+define('ERROR_SALE___INVALID_PRODUCT_COUNT', 203);
+
 ?>
