@@ -6,7 +6,6 @@ class Command_Categories implements Command
 {
 	public function run($method, $uriParameters, $queryParameters)
 	{
-		$con = Connection::getInstance();
 		if($method == 'GET')
 		{
 			$pattern = getQueryParameter($queryParameters, 'pattern');
