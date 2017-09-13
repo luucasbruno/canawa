@@ -35,7 +35,7 @@ app.controller('clientsController', function($scope,$http){
 
   
   
-  $http.post('../../api/src/index.php/clients', data, config)
+    $http.post('../../api/src/index.php/clients', data, config)
     .then(function(data, status, headers, config){
       $scope.PostDataResponse = "Post DAta Submitted success";
     }, function(data, status, headers, config){
@@ -46,5 +46,11 @@ app.controller('clientsController', function($scope,$http){
 
     });
   };
+  $scope.getData = function(){
+    $http.get('../../api/src/index.php/clients')
+    .then(function(response){
+      $scope.clients = response.data.clients;
+    })
+  }
 });
 
