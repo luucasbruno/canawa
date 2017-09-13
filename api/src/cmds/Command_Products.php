@@ -6,7 +6,6 @@ class Command_Products implements Command
 {
 	public function run($method, $uriParameters, $queryParameters)
 	{
-		$con = Connection::getInstance();
 		if($method == 'GET')
 		{
 			$mode = getQueryParameter($queryParameters, 'mode');
