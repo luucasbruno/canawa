@@ -1,20 +1,22 @@
 // Code goes here
-var demo = angular.module('demo', [require('angular-route')]);
-demo.config(function($routeProvider){
-  $routeProvider.when('/', {
-    controller: 'testController',
-    templateUrl: 'test.html'
-  });
+var app = angular.module('canawaApp', ['ngRoute']);
+app.config(function($routeProvider){
+  $routeProvider
+    .when('/', {
+      
+      templateUrl: 'pages/home.html'
+    })
+    .when('/clientes', {
+      
+      templateUrl: 'pages/clientes.html'
+    })
+    .when('/productos', {
+      
+      templateUrl: 'pages/productos.html'
+    })
+    .when('/ventas', {
+      
+      templateUrl: 'pages/ventas.html'
+    });
 });
 
-var controllers = {};
-controllers.testController = function($scope){
-   $scope.first = "Info";
-    $scope.customers=[
-        {name:'jerry',city:'chicago'},
-        {name:'tom',city:'houston'},
-        {name:'enslo',city:'taipei'}
-    ];
-}
-
-demo.controller(controllers);
