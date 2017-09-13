@@ -17,3 +17,5 @@
 /sales							|		| Command_Sales							| GET,POST
 
 /about							|		| Command_About							| GET
+
+/deliveries						|		| Command_Deliveries					| GET,POST
