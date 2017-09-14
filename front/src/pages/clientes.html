@@ -19,5 +19,16 @@
                   </form>
                   <hr />
                   {{ PostDataResponse }}
+                  <br>
+                  <br>
+                  <button ng-click="getData()">get</button>
+                  <table>
+                        
+                        <tr ng-repeat="client in clients">
+                          <td>{{ client.id }}</td>
+                          <td>{{ client.name }}</td>
+                        </tr>
+                </table>
+                  
         </body>
 </html>
