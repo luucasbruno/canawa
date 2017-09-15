@@ -9,7 +9,14 @@ class Command_Deliveries implements Command
 		if($method == 'GET')
 		{
 			$json = array();
-			$iter = DeliveryManager::getDeliveries();
+			$mode = getQueryParameter($queryParameters, 'mode');
+			switch($mode)
+			{
+				case 'today':	$iter = DeliveryManager::getTodayDeliveries();		break;
+				case 'pending':	$iter = DeliveryManager::getPendingDeliveries();	break;
+				case 'delayed':	$iter = DeliveryManager::getDelayedDeliveries();	break;
+				default:		$iter = DeliveryManager::getDeliveries();			break;
+			}
 			if(is_integer($iter))
 			{
 				$json['ret'] = $iter;

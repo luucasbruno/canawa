@@ -40,6 +40,39 @@ class DeliveryManager
 		$res = $con->query("SELECT `ID` FROM `DELIVERY`;");
 		return new DeliveryIterator($res);
 	}
+	/**
+	 * Obtener las entregas del día actual
+	 *
+	 * @return DeliveryIterator Iterador de entregas
+	 */
+	public static function getTodayDeliveries()
+	{
+		$con = Connection::getInstance();
+		$res = $con->query("SELECT `ID` FROM `DELIVERY` WHERE `DATE`=DATE(SYSDATE());");
+		return new DeliveryIterator($res);
+	}
+	/**
+	 * Obtener las entregas pendientes
+	 *
+	 * @return DeliveryIterator Iterador de entregas
+	 */
+	public static function getPendingDeliveries()
+	{
+		$con = Connection::getInstance();
+		$res = $con->query("SELECT `ID` FROM `DELIVERY` WHERE `DELIVERED`=FALSE;");
+		return new DeliveryIterator($res);
+	}
+	/**
+	 * Obtener las entregas atrasadas
+	 * 
+	 * @return DeliveryIterator Iterador de entregas
+	 */
+	public static function getDelayedDeliveries()
+	{
+		$con = Connection::getInstance();
+		$res = $con->query("SELECT `ID` FROM `DELIVERY` WHERE `DATE` < SYSDATE() AND `DELIVERED`=FALSE;");
+		return new DeliveryIterator($res);
+	}
 }
 
 ?>
