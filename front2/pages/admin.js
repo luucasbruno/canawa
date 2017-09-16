@@ -1,3 +1,6 @@
+/**
+ * Inciar panel superior
+ */
 function initTopBar(nav)
 {
 	let header = `
@@ -8,12 +11,12 @@ function initTopBar(nav)
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+		<a class="navbar-brand" href="javascript:void(0)">Canawa</a>
 	</div>`;
-	let links = 
-		$(`<ul class="nav navbar-top-links navbar-right">
-		</ul>`);
-		
+	
+	let links = $('<ul class="nav navbar-top-links navbar-right"></ul>');
+	
+	// Crear un botón dropdown
 	let addDropdown = function(panel, icon, type, filler)
 	{
 		let li = $(`
@@ -29,221 +32,141 @@ function initTopBar(nav)
 		li.append(ul);
 		panel.append(li);
 	}
+	// Crear un item divisorio dentro de un dropdown
 	let addDropdownDiv = function(ul)
 	{
 		ul.append('<li class="divider"></li>');
 	}
+	// Crear un item normal dentro de un dropdown
 	let addDropdownItem = function(ul, icon, label, onclick)
 	{
 		let li = $('<li><a href="javascript:void(0)"><i class="fa '+icon+' fa-fw"></i> '+label+'</a></li>');
 		li.on('click', onclick);
 		ul.append(li);
-	};
-
+	}
+	// Crear un mensaje dentro de un dropdown
+	let addDropdownMessage = function(ul, author, time, message, onclick)
+	{
+		let li = $(`
+<li>
+	<a href="javascript:void(0)">
+		<div>
+			<strong>`+author+`</strong>
+			<span class="pull-right text-muted">
+				<em>`+time+`</em>
+			</span>
+		</div>
+		<div>`+message+`</div>
+	</a>
+</li>`);
+		if(onclick != null)li.on('click', onclick);ul.append(li);
+	}
+	// Crear una tarea dentro de un dropdown
+	let addDropdownTask = function(ul, label, percent, type, onclick)
+	{
+		let li = $(`
+<li>
+	<a href="javascript:void(0)">
+		<div>
+			<p>
+				<strong>`+label+`</strong>
+				<span class="pull-right text-muted">`+percent+`% Complete</span>
+			</p>
+			<div class="progress progress-striped active">
+				<div class="progress-bar progress-bar-`+type+`" role="progressbar" aria-valuenow="`+percent+`" aria-valuemin="0" aria-valuemax="100" style="width: `+percent+`%">
+					<span class="sr-only">`+percent+`% Complete (`+type+`)</span>
+				</div>
+			</div>
+		</div>
+	</a>
+</li>`);
+		if(onclick != null)li.on('click', onclick);ul.append(li);
+	}
+	// Crear un alerta dentro de un dropdown
+	let addDropdownAlert = function(ul, icon, label, elapsed, onclick)
+	{
+		let li = $(`
+<li>
+	<a href="javascript:void(0)">
+		<div>
+			<i class="fa `+icon+` fa-fw"></i> `+label+`
+			<span class="pull-right text-muted small">`+elapsed+`</span>
+		</div>
+	</a>
+</li>`);
+		if(onclick != null)li.on('click', onclick);ul.append(li);
+	}
+	// Crear un footer dentro de un dropdown
+	let addDropdownFooter = function(ul, label, onclick)
+	{
+		let li = $(`
+<li>
+	<a class="text-center" href="#">
+		<strong>`+label+`</strong>
+		<i class="fa fa-angle-right"></i>
+	</a>
+</li>`);
+		if(onclick != null)li.on('click', onclick);ul.append(li);
+	}
 	
-	
-	let dropdown1 = `<li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-				<i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
-			</a>
-			<ul class="dropdown-menu dropdown-messages">
-				<li>
-					<a href="#">
-						<div>
-							<strong>John Smith</strong>
-							<span class="pull-right text-muted">
-								<em>Yesterday</em>
-							</span>
-						</div>
-						<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a href="#">
-						<div>
-							<strong>John Smith</strong>
-							<span class="pull-right text-muted">
-								<em>Yesterday</em>
-							</span>
-						</div>
-						<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a href="#">
-						<div>
-							<strong>John Smith</strong>
-							<span class="pull-right text-muted">
-								<em>Yesterday</em>
-							</span>
-						</div>
-						<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a class="text-center" href="#">
-						<strong>Read All Messages</strong>
-						<i class="fa fa-angle-right"></i>
-					</a>
-				</li>
-			</ul>
-		</li>`;
-	let dropdown2 = `                <li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-				<i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
-			</a>
-			<ul class="dropdown-menu dropdown-tasks">
-				<li>
-					<a href="#">
-						<div>
-							<p>
-								<strong>Task 1</strong>
-								<span class="pull-right text-muted">40% Complete</span>
-							</p>
-							<div class="progress progress-striped active">
-								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-									<span class="sr-only">40% Complete (success)</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a href="#">
-						<div>
-							<p>
-								<strong>Task 2</strong>
-								<span class="pull-right text-muted">20% Complete</span>
-							</p>
-							<div class="progress progress-striped active">
-								<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-									<span class="sr-only">20% Complete</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a href="#">
-						<div>
-							<p>
-								<strong>Task 3</strong>
-								<span class="pull-right text-muted">60% Complete</span>
-							</p>
-							<div class="progress progress-striped active">
-								<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-									<span class="sr-only">60% Complete (warning)</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a href="#">
-						<div>
-							<p>
-								<strong>Task 4</strong>
-								<span class="pull-right text-muted">80% Complete</span>
-							</p>
-							<div class="progress progress-striped active">
-								<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-									<span class="sr-only">80% Complete (danger)</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a class="text-center" href="#">
-						<strong>See All Tasks</strong>
-						<i class="fa fa-angle-right"></i>
-					</a>
-				</li>
-			</ul>
-		</li>`;
-	
-	let dropdown3 = `<li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-				<i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-			</a>
-			<ul class="dropdown-menu dropdown-alerts">
-				<li>
-					<a href="#">
-						<div>
-							<i class="fa fa-comment fa-fw"></i> New Comment
-							<span class="pull-right text-muted small">4 minutes ago</span>
-						</div>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a href="#">
-						<div>
-							<i class="fa fa-twitter fa-fw"></i> 3 New Followers
-							<span class="pull-right text-muted small">12 minutes ago</span>
-						</div>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a href="#">
-						<div>
-							<i class="fa fa-envelope fa-fw"></i> Message Sent
-							<span class="pull-right text-muted small">4 minutes ago</span>
-						</div>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a href="#">
-						<div>
-							<i class="fa fa-tasks fa-fw"></i> New Task
-							<span class="pull-right text-muted small">4 minutes ago</span>
-						</div>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a href="#">
-						<div>
-							<i class="fa fa-upload fa-fw"></i> Server Rebooted
-							<span class="pull-right text-muted small">4 minutes ago</span>
-						</div>
-					</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a class="text-center" href="#">
-						<strong>See All Alerts</strong>
-						<i class="fa fa-angle-right"></i>
-					</a>
-				</li>
-			</ul>
-		</li>
-		`;
-		
-	links.append(dropdown1);
-	links.append(dropdown2);
-	links.append(dropdown3);
-	
+	//
+	// Crear los dropdowns
+	//
+	addDropdown(links, 'fa-envelope', "dropdown-messages", function(ul)
+	{
+		addDropdownMessage(ul, 'John Smith', 'Yesterday', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...', function(){});
+		addDropdownDiv(ul);
+		addDropdownMessage(ul, 'John Smith', 'Yesterday', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...', function(){});
+		addDropdownDiv(ul);
+		addDropdownMessage(ul, 'John Smith', 'Yesterday', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...', function(){});
+		addDropdownDiv(ul);
+		addDropdownFooter(ul, 'Read All Messages', function(){});
+	});
+	addDropdown(links, 'fa-tasks', "dropdown-tasks", function(ul)
+	{
+		addDropdownTask(ul, 'Task 1', 40, 'success', function(){});
+		addDropdownDiv(ul);
+		addDropdownTask(ul, 'Task 2', 20, 'info', function(){});
+		addDropdownDiv(ul);
+		addDropdownTask(ul, 'Task 3', 60, 'warning', function(){});
+		addDropdownDiv(ul);
+		addDropdownTask(ul, 'Task 4', 80, 'danger', function(){});
+		addDropdownDiv(ul);
+		addDropdownFooter(ul, 'See All Tasks', function(){});
+	});
+	addDropdown(links, 'fa-bell', "dropdown-alerts", function(ul)
+	{
+		addDropdownAlert(ul, 'fa-comment', 'New Comment', '4 minutes ago', function(){});
+		addDropdownDiv(ul);
+		addDropdownAlert(ul, 'fa-twitter', '3 New Followers', '12 minutes ago', function(){});
+		addDropdownDiv(ul);
+		addDropdownAlert(ul, 'fa-envelope', 'Message Sent', '4 minutes ago', function(){});
+		addDropdownDiv(ul);
+		addDropdownAlert(ul, 'fa-tasks', 'New Task', '4 minutes ago', function(){});
+		addDropdownDiv(ul);
+		addDropdownAlert(ul, 'fa-upload', 'Server Rebooted', '4 minutes ago', function(){});
+		addDropdownDiv(ul);
+		addDropdownFooter(ul, 'See All Alerts', function(){});
+	});
 	addDropdown(links, 'fa-user', "dropdown-user", function(ul)
 	{
 		addDropdownItem(ul, 'fa-user', 'Perfil', function(){});
 		addDropdownItem(ul, 'fa-gear', 'Configuración', function(){});
 		addDropdownDiv(ul);
-		addDropdownItem(ul, 'fa-sign-out', 'Salir', function(){});
+		addDropdownItem(ul, 'fa-sign-out', 'Salir', function()
+		{
+			clearAllCookies();
+			location.reload();
+		});
 	});
 	
+	// ...
 	nav.append(header);
 	nav.append(links);
 }
+/**
+ * Iniciar panel de navegación (menú)
+ */
 function initSideBar(nav)
 {
 	let addMenuItem = function(menu, icon, label, click)
@@ -320,6 +243,64 @@ function initSideBar(nav)
 	});
 	nav.append(sidebar);
 }
+/**
+ * Iniciar panel de admin
+ */
+function initAdminPanel()
+{
+	aaa();
+	bbb();
+}
+/**
+ * Iniciar panel de logeo
+ */
+function initLoginPanel()
+{
+	let s = `
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="login-panel panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Canawa</h3>
+					</div>
+					<div class="panel-body">
+						<form role="form" id="form" action="javascript:void(0)">
+							<fieldset>
+								<div class="form-group">
+									<input class="form-control" placeholder="Usuario" id="username" type="text" autofocus>
+								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="Contraseña" id="password" type="password" value="">
+								</div>
+								<button class="btn btn-lg btn-success btn-block">Entrar</button>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>`;
+
+	$(document.body).html(s);
+
+	$('#form').on('submit', function()
+	{
+		api.login($('#username').val(), $('#password').val(), function(json)
+		{
+			if(json.ret != 0)
+			{
+				// TODO: tratar error
+			}
+			else
+			{
+				setCookie('token', json.token, 0);
+				location.reload();
+			}
+		});
+	});
+}
+
 //--------------------------------------------------------------------------------------------------
 		function aaa()
 		{
@@ -848,5 +829,15 @@ function initSideBar(nav)
 		
 			$("#wrapper").append(s);
 		}
-		aaa();
-		bbb();
+		
+
+if(getCookie('token') != '')
+{
+	initAdminPanel();
+}
+else
+{
+	initLoginPanel();
+}
+
+
