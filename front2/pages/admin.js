@@ -208,38 +208,197 @@ function initSideBar(nav)
 	addSubMenu("brands", menu, 'fa-bookmark', 'Marcas', function(submenu)
 	{
 		addSubMenuItem(submenu, "Nueva", function(){});
-		addSubMenuItem(submenu, "Buscar", function(){});
+		addSubMenuItem(submenu, "Buscar", function()
+		{
+			api.getAllBrands(function(json)
+			{
+				initContentPanel('Marcas', function(container)
+				{
+					createTable(
+						container,
+						json.brands.length,
+						["#", "Nombre" ],
+						function(col, row)
+						{
+							if(col == 0)
+								return json.brands[row].id;
+							return json.brands[row].name;
+						});
+				});
+			});
+		});
 	});
 	addSubMenu("categories", menu, 'fa-tags', 'Categorías', function(submenu)
 	{
 		addSubMenuItem(submenu, "Nueva", function(){});
-		addSubMenuItem(submenu, "Buscar", function(){});
+		addSubMenuItem(submenu, "Buscar", function()
+		{
+			api.getAllCategories(function(json)
+			{
+				initContentPanel('Categorías', function(container)
+				{
+					createTable(
+						container,
+						json.categories.length,
+						["#", "Descripción" ],
+						function(col, row)
+						{
+							if(col == 0)
+								return json.categories[row].id;
+							return json.categories[row].description;
+						});
+				});
+			});
+		});
 	});
 	addSubMenu("clients", menu, 'fa-users', 'Clientes', function(submenu)
 	{
 		addSubMenuItem(submenu, "Nuevo", function(){});
-		addSubMenuItem(submenu, "Buscar", function(){});
+		addSubMenuItem(submenu, "Buscar", function()
+		{
+			api.getAllClients(function(json)
+			{
+				initContentPanel('Clientes', function(container)
+				{
+					createTable(
+						container,
+						json.clients.length,
+						["#", "Nombre", "CUIT", "Correo electrónico", "Teléfono", "Dirección" ],
+						function(col, row)
+						{
+							if(col == 0)	return json.clients[row].id;
+							if(col == 1)	return json.clients[row].name;
+							if(col == 2)	return json.clients[row].cuit;
+							if(col == 3)	return json.clients[row].email;
+							if(col == 4)	return json.clients[row].phone;
+							if(col == 5)	return json.clients[row].location;
+							return "";
+						});
+				});
+			});
+		});
 	});
 	addSubMenu("products", menu, 'fa-th-list', 'Productos', function(submenu)
 	{
 		addSubMenuItem(submenu, "Nuevo", function(){});
-		addSubMenuItem(submenu, "Buscar", function(){});
+		addSubMenuItem(submenu, "Buscar", function()
+		{
+			api.getAllProducts(function(json)
+			{
+				initContentPanel('Products', function(container)
+				{
+					createTable(
+						container,
+						json.products.length,
+						["#", "Nombre", "Marca", "Proveedor", "Precio minorista", "Precio mayorista" ],
+						function(col, row)
+						{
+							if(col == 0)	return json.products[row].id;
+							if(col == 1)	return json.products[row].name;
+							if(col == 2)	return json.products[row].brand;
+							if(col == 3)	return json.products[row].provider;
+							if(col == 4)	return json.products[row].retail_price;
+							if(col == 5)	return json.products[row].wholesale_price;
+							return "";
+						});
+				});
+			});
+		});
 	});
 	addSubMenu("providers", menu, 'fa-truck', 'Proveedores', function(submenu)
 	{
 		addSubMenuItem(submenu, "Nuevo", function(){});
-		addSubMenuItem(submenu, "Buscar", function(){});
+		addSubMenuItem(submenu, "Buscar", function()
+		{
+			api.getAllProviders(function(json)
+			{
+				initContentPanel('Providers', function(container)
+				{
+					createTable(
+						container,
+						json.providers.length,
+						["#", "Nombre", "Correo electrónico", "Teléfono", "Companía" ],
+						function(col, row)
+						{
+							if(col == 0)	return json.providers[row].id;
+							if(col == 1)	return json.providers[row].name;
+							if(col == 2)	return json.providers[row].email;
+							if(col == 3)	return json.providers[row].phone;
+							if(col == 4)	return json.providers[row].company;
+							return "";
+						});
+				});
+			});
+		});
 	});
 	addSubMenu("sales", menu, 'fa-shopping-cart', 'Ventas', function(submenu)
 	{
 		addSubMenuItem(submenu, "Nueva", function(){});
-		addSubMenuItem(submenu, "Buscar", function(){});
+		addSubMenuItem(submenu, "Buscar", function()
+		{
+			api.getAllSales(function(json)
+			{
+				initContentPanel('Ventas', function(container)
+				{
+					createTable(
+						container,
+						json.sales.length,
+						["#", "Usuario", "Cliente", "Total", "Timestamp" ],
+						function(col, row)
+						{
+							if(col == 0)	return json.sales[row].id;
+							if(col == 1)	return json.sales[row].user;
+							if(col == 2)	return json.sales[row].client;
+							if(col == 3)	return json.sales[row].total;
+							if(col == 4)	return json.sales[row].timestamp;
+							return "";
+						});
+				});
+			});
+		});
 	});
 	addSubMenu("deliveries", menu, 'fa-car', 'Entregas', function(submenu)
 	{
-		addSubMenuItem(submenu, "Hoy", function(){});
-		addSubMenuItem(submenu, "Atrasadas", function(){});
-		addSubMenuItem(submenu, "Pendientes", function(){});
+		let init = function(title, json)
+		{
+			initContentPanel(title, function(container)
+			{
+				createTable(
+					container,
+					json.deliveries.length,
+					["#", "#Venta", "Fecha", "Dirección", "Entregado" ],
+					function(col, row)
+					{
+						if(col == 0)	return json.deliveries[row].id;
+						if(col == 1)	return json.deliveries[row].sale_id;
+						if(col == 2)	return json.deliveries[row].date;
+						if(col == 3)	return json.deliveries[row].location;
+						if(col == 4)	return json.deliveries[row].delivered == 1 ? "Si" : "No";
+						return "";
+					});
+			});
+		}
+		addSubMenuItem(submenu, "Hoy", function()
+		{
+			api.getTodayDeliveries(function(json)
+			{
+				init('Entregas de hoy', json);
+			});
+		});
+		addSubMenuItem(submenu, "Atrasadas", function()
+		{
+			api.getDelayedDeliveries(function(json)
+			{
+				init('Entregas atrasadas', json);
+			});
+		});
+		addSubMenuItem(submenu, "Pendientes", function()
+		{
+			api.getPendingDeliveries(function(json)
+			{
+				init('Entregas pendientes', json);
+			});
+		});
 	});
 	nav.append(sidebar);
 }
@@ -256,7 +415,19 @@ function initAdminPanel()
 
 	wrapper.append(nav);
 	
-	initContentPanel(wrapper, 'Inicio', function()
+	let s = `
+<div id="page-wrapper">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header" id="page-header">Inicio</h1>
+		</div>
+	</div>
+	<div class="row" id="page-content">
+	</div>
+</div>
+`;
+	wrapper.append(s);
+	initContentPanel('Inicio', function()
 	{
 	});
 }
@@ -311,18 +482,15 @@ function initLoginPanel()
 }
 
 //--------------------------------------------------------------------------------------------------
-function initContentPanel(wrapper, title)
+function initContentPanel(title, filler)
 {
-		let s = `
-<div id="page-wrapper">
-	<div class="row">
-		<div class="col-lg-12">
-			<h1 class="page-header">`+title+`</h1>
-		</div>
-	</div>
-</div>`;
+	let header = $("#page-header");
+	let content = $("#page-content");
 	
-	wrapper.append(s);
+	header.html(title);
+	content.html('');
+	if(filler)
+		filler(content);
 }
 
 if(getCookie('token') != '')
