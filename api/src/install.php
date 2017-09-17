@@ -3,7 +3,7 @@ $drop = true;
 $server = "localhost";
 $db_name = "canawa";
 $db_username = "root";
-$db_password = "";
+$db_password = "root1234";
 
 //
 // Establecer conexión
