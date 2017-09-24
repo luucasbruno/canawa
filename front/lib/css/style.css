@@ -174,8 +174,8 @@ li.li-hover:hover {
     height: 150px;
     margin: -75px 0 0 -75px;
     border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #3498db;
+    border: 5px solid transparent;
+    border-top-color: #304ffe;
     -webkit-animation: spin 2s linear infinite;
     /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 2s linear infinite;
@@ -201,7 +201,7 @@ li.li-hover:hover {
     bottom: 5px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #e74c3c;
+    border-top-color: #ffffff;
     -webkit-animation: spin 3s linear infinite;
     /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 3s linear infinite;
@@ -216,8 +216,8 @@ li.li-hover:hover {
     right: 15px;
     bottom: 15px;
     border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #f9c922;
+    border: 5px solid transparent;
+    border-top-color: #304ffe;
     -webkit-animation: spin 1.5s linear infinite;
     /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 1.5s linear infinite;
@@ -267,7 +267,7 @@ li.li-hover:hover {
     top: 0;
     width: 51%;
     height: 100%;
-    background: #222222;
+    background: #212121;
     z-index: 1000;
     -webkit-transform: translateX(0);
     /* Chrome, Opera 15+, Safari 3.1+ */
@@ -324,8 +324,8 @@ li.li-hover:hover {
     /* IE 9 */
     transform: translateY(-100%);
     /* Firefox 16+, IE 10+, Opera */
-    -webkit-transition: all 0.3s 1s ease-out;
-    transition: all 0.3s 1s ease-out;
+    -webkit-transition: all 0.8s 1s ease-out;
+    transition: all 0.8s 1s ease-out;
 }
 
 
