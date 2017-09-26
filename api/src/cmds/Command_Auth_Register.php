@@ -1,6 +1,6 @@
 <?php
 
-class Command_Auth_Login implements Command
+class Command_Auth_Register implements Command
 {
 	public function run($method, $uriParameters, $queryParameters)
 	{
@@ -15,7 +15,7 @@ class Command_Auth_Login implements Command
 			return HTTP_RCODE___BAD_REQUEST;
 		}
 		// ...
-		$token = Authentication::login($username, $password);
+		$token = Authentication::register($username, $password);
 		if(is_integer($token))
 		{
 			$json['ret'] = $token;
@@ -29,5 +29,3 @@ class Command_Auth_Login implements Command
 		return HTTP_RCODE___OK;
 	}
 }
-
-?>
