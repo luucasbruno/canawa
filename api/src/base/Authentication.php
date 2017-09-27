@@ -11,7 +11,10 @@ require_once 'libs/jwt/BeforeValidException.php';
 require_once 'libs/jwt/ExpiredException.php';
 require_once 'libs/jwt/SignatureInvalidException.php';
 require_once 'libs/jwt/JWT.php';
+use Firebase\JWT\BeforeValidException;
+use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
+use Firebase\JWT\SignatureInvalidException;
 
 require_once 'base/AuthenticationToken.php';
 
@@ -101,7 +104,7 @@ class Authentication
 	 * @see ERROR___SQL_QUERY
 	 * @see ERROR___EMPTY_USERNAME
 	 * @see ERROR___EMPTY_PASSWORD
-	 * @see ERROR___USER_ALREADY_EXISTS
+	 * @see ERROR___USERNAME_ALREADY_EXISTS
 	 */
 	public static function register($username, $password)
 	{
@@ -124,7 +127,7 @@ class Authentication
 		}
 		if(null != ($data = $res->fetch_array()))
 		{
-			return ERROR___USER_ALREADY_EXISTS;
+			return ERROR___USERNAME_ALREADY_EXISTS;
 		}
 		//
 		// Calcular el siguiente id
@@ -151,11 +154,26 @@ class Authentication
 	/**
 	 * Desregistrarse del sistema
 	 * 
-	 * @param AuthenticationToken $token Token de autenticación
+	 * @param User $user Usuario
+	 * @param string $password Contraseña
+	 * 
+	 * @return integer SUCCESS ó código de error
 	 */
-	public static function unregister($token)
+	public static function unregister($user, $password)
 	{
-		return $token->getUser()->delete();
+		$id = $user->getId();
+		$con = Connection::getInstance();
+		$res = $con->query("SELECT PASSWORD FROM USER WHERE ID='$id';");
+		if(null == ($data = $res->fetch_array()))
+		{
+			return ERROR___SQL_QUERY;
+		}
+		if($data['PASSWORD'] != $password)
+		{
+			return ERROR___INVALID_PASSWORD;
+		}
+		$res = $con->query("DELETE FROM USER WHERE ID='$id';");
+		return SUCCESS;
 	}
 	/**
 	 * Obtener el token

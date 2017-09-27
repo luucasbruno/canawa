@@ -3,6 +3,8 @@
 ####################################################################################################
 
 /auth/login						|		| Command_Auth_Login					| POST
+/auth/register					|		| Command_Auth_Register					| POST
+/auth/unregister				|		| Command_Auth_Unregister				| POST
 
 /brands							|		| Command_Brands						| GET,POST,PATCH
 
@@ -17,3 +19,5 @@
 /sales							|		| Command_Sales							| GET,POST
 
 /about							|		| Command_About							| GET
+
+/deliveries						|		| Command_Deliveries					| GET,POST

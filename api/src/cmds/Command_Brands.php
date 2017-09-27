@@ -54,7 +54,7 @@ class Command_Brands implements Command
 		else if($method == 'PATCH')
 		{
 			$id = getQueryParameter($queryParameters, 'id');
-			$newName= getQueryParameter($queryParameters, 'newName');
+			$newName= getQueryParameter($queryParameters, 'new_name');
 			
 			if(empty($id) || empty($newName))
 			{

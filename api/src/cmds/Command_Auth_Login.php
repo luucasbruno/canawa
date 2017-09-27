@@ -4,7 +4,6 @@ class Command_Auth_Login implements Command
 {
 	public function run($method, $uriParameters, $queryParameters)
 	{
-		$ret = HTTP_RCODE___OK;
 		$json = array();
 		$username = getQueryParameter($queryParameters, 'username');
 		$password = getQueryParameter($queryParameters, 'password');
