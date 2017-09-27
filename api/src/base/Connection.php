@@ -77,7 +77,7 @@ class Connection
 		$server = "localhost";
 		$db_name = "canawa";
 		$db_username = "root";
-		$db_password = "root1234";
+		$db_password = "159951lucas";
 		
 		$this->conn = new mysqli($server, $db_username, $db_password, $db_name);
 		$this->conn->query("SET NAMES 'utf8';");
