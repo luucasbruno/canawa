@@ -1,14 +1,12 @@
 
-function createTable(container, rows, columns, getTableItem)
-{
+function createTable(container, rows, columns, getTableItem){
 	let s = '';
 	
 	s += '<div class="panel-body">';
 		s += '<table class="table table-striped table-bordered table-hover">';
 			s += '<thead>';
 				s += '<tr>';
-					for(i = 0; i < columns.length; i++)
-					{
+					for(i = 0; i < columns.length; i++){
 						s += '<th>'+columns[i]+'</th>';
 					}
 				s += '</tr>';
@@ -31,8 +29,7 @@ function createTable(container, rows, columns, getTableItem)
 	container.append(s);
 }
 
-function createAdvancedTable(container, rows, columns, getTableItem)
-{
+function createAdvancedTable(container, rows, columns, getTableItem){
 	let s = `
 	<div class="panel-body">
 		<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">

@@ -4,7 +4,6 @@
 //
 
 function setCookie(cname, cvalue, exdays) {
-	
 	var expires = 0;
 	if(exdays > 0)
 	{
@@ -14,7 +13,7 @@ function setCookie(cname, cvalue, exdays) {
 	}
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-function getCookie(cname) {
+function getCookie(cname){
     var name = cname + "=";
     var ca = document.cookie.split(';');
     for(var i = 0; i <ca.length; i++) {
@@ -29,12 +28,10 @@ function getCookie(cname) {
     return "";
 }
 
-function deleteCookie(cname)
-{
+function deleteCookie(cname){
 	setCookie(cname, "", -1);
 }
-function clearAllCookies()
-{
+function clearAllCookies(){
 	var cookies = document.cookie.split(";");
 	for(var i = 0; i < cookies.length; i++)
 	{

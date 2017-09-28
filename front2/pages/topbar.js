@@ -1,4 +1,5 @@
 function initTopBar(nav){
+	// -------------------- Declaraciones ---------------------------//
 	let header = `
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -13,8 +14,7 @@ function initTopBar(nav){
 	let links = $('<ul class="nav navbar-top-links navbar-right"></ul>');
 	
 	// Crear un botón dropdown
-	let addDropdown = function(panel, icon, type, filler)
-	{
+	let addDropdown = function(panel, icon, type, filler){
 		let li = $(`
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
@@ -29,20 +29,17 @@ function initTopBar(nav){
 		panel.append(li);
 	}
 	// Crear un item divisorio dentro de un dropdown
-	let addDropdownDiv = function(ul)
-	{
+	let addDropdownDiv = function(ul){
 		ul.append('<li class="divider"></li>');
 	}
 	// Crear un item normal dentro de un dropdown
-	let addDropdownItem = function(ul, icon, label, onclick)
-	{
+	let addDropdownItem = function(ul, icon, label, onclick){
 		let li = $('<li><a href="javascript:void(0)"><i class="fa '+icon+' fa-fw"></i> '+label+'</a></li>');
 		li.on('click', onclick);
 		ul.append(li);
 	}
 	// Crear un mensaje dentro de un dropdown
-	let addDropdownMessage = function(ul, author, time, message, onclick)
-	{
+	let addDropdownMessage = function(ul, author, time, message, onclick){
 		let li = $(`
 		<li>
 			<a href="javascript:void(0)">
@@ -58,8 +55,7 @@ function initTopBar(nav){
 		if(onclick != null)li.on('click', onclick);ul.append(li);
 	}
 	// Crear una tarea dentro de un dropdown
-	let addDropdownTask = function(ul, label, percent, type, onclick)
-	{
+	let addDropdownTask = function(ul, label, percent, type, onclick){
 		let li = $(`
 			<li>
 				<a href="javascript:void(0)">
@@ -79,8 +75,7 @@ function initTopBar(nav){
 		if(onclick != null)li.on('click', onclick);ul.append(li);
 	}
 	// Crear un alerta dentro de un dropdown
-	let addDropdownAlert = function(ul, icon, label, elapsed, onclick)
-	{
+	let addDropdownAlert = function(ul, icon, label, elapsed, onclick){
 		let li = $(`
 			<li>
 				<a href="javascript:void(0)">
@@ -93,8 +88,7 @@ function initTopBar(nav){
 		if(onclick != null)li.on('click', onclick);ul.append(li);
 	}
 	// Crear un footer dentro de un dropdown
-	let addDropdownFooter = function(ul, label, onclick)
-	{
+	let addDropdownFooter = function(ul, label, onclick){
 		let li = $(`
 		<li>
 			<a class="text-center" href="#">
@@ -105,11 +99,12 @@ function initTopBar(nav){
 		if(onclick != null)li.on('click', onclick);ul.append(li);
 	}
 	
+
+	//--------------------Ejecucion-------------------------//
 	//
 	// Crear los dropdowns
 	//
-	addDropdown(links, 'fa-envelope', "dropdown-messages", function(ul)
-	{
+	addDropdown(links, 'fa-envelope', "dropdown-messages", function(ul){
 		addDropdownMessage(ul, 'John Smith', 'Yesterday', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...', function(){});
 		addDropdownDiv(ul);
 		addDropdownMessage(ul, 'John Smith', 'Yesterday', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...', function(){});
@@ -118,8 +113,7 @@ function initTopBar(nav){
 		addDropdownDiv(ul);
 		addDropdownFooter(ul, 'Read All Messages', function(){});
 	});
-	addDropdown(links, 'fa-tasks', "dropdown-tasks", function(ul)
-	{
+	addDropdown(links, 'fa-tasks', "dropdown-tasks", function(ul){
 		addDropdownTask(ul, 'Task 1', 40, 'success', function(){});
 		addDropdownDiv(ul);
 		addDropdownTask(ul, 'Task 2', 20, 'info', function(){});
@@ -130,8 +124,7 @@ function initTopBar(nav){
 		addDropdownDiv(ul);
 		addDropdownFooter(ul, 'See All Tasks', function(){});
 	});
-	addDropdown(links, 'fa-bell', "dropdown-alerts", function(ul)
-	{
+	addDropdown(links, 'fa-bell', "dropdown-alerts", function(ul){
 		addDropdownAlert(ul, 'fa-comment', 'New Comment', '4 minutes ago', function(){});
 		addDropdownDiv(ul);
 		addDropdownAlert(ul, 'fa-twitter', '3 New Followers', '12 minutes ago', function(){});
@@ -144,13 +137,11 @@ function initTopBar(nav){
 		addDropdownDiv(ul);
 		addDropdownFooter(ul, 'See All Alerts', function(){});
 	});
-	addDropdown(links, 'fa-user', "dropdown-user", function(ul)
-	{
+	addDropdown(links, 'fa-user', "dropdown-user", function(ul){
 		addDropdownItem(ul, 'fa-user', 'Perfil', function(){});
 		addDropdownItem(ul, 'fa-gear', 'Configuración', function(){});
 		addDropdownDiv(ul);
-		addDropdownItem(ul, 'fa-sign-out', 'Salir', function()
-		{
+		addDropdownItem(ul, 'fa-sign-out', 'Salir', function(){
 			clearAllCookies();
 			location.reload();
 		});
