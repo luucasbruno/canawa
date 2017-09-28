@@ -32,7 +32,7 @@ function createTable(container, rows, columns, getTableItem){
 function createAdvancedTable(container, rows, columns, getTableItem){
 	let s = `
 	<div class="panel-body">
-		<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+		<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 			<thead>
 				<tr>`;
 					for(i = 0; i < columns.length; i++)
@@ -60,6 +60,21 @@ function createAdvancedTable(container, rows, columns, getTableItem){
 	</div>
 	`;
 	container.html(s);
+
+
+	///----------- Inicialización de las dataTables
+	$(document).ready(function() {
+		var table = $('#dataTables').DataTable({
+			stateSave: true
+		});
+		$('#dataTables tbody').on('click', 'tr', function(){
+			$(this).toggleClass('selected');
+		});
+		$('#submit-products').click( function (){
+			let data = table.rows('.selected').data(); // array con los datos de las filas que fueron seleccionadas
+			alert( data[0][0]  );
+		} );
+	} );
 }
 
 

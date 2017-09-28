@@ -115,7 +115,7 @@ function initSideBar(nav){
 		api.getAllProducts(function(json){
 			initContentPanel('Products', function(container)
 			{
-				createTable(
+				createAdvancedTable(
 					container,
 					json.products.length,
 					["#", "Nombre", "Marca", "Proveedor", "Precio minorista", "Precio mayorista" ],
@@ -129,6 +129,10 @@ function initSideBar(nav){
 						if(col == 5)	return json.products[row].wholesale_price;
 						return "";
 					});
+				let btnSubmit = $('<button type="button" id="submit-products" class="btn btn-success">Success</button>');
+				container.append(btnSubmit);
+				
+				
 			});
 		});
 
@@ -139,7 +143,7 @@ function initSideBar(nav){
 		api.getAllProviders(function(json){
 			initContentPanel('Providers', function(container)
 			{
-				createTable(
+				createAdvancedTable(
 					container,
 					json.providers.length,
 					["#", "Nombre", "Correo electrónico", "Teléfono", "Companía" ],
@@ -152,7 +156,8 @@ function initSideBar(nav){
 						if(col == 4)	return json.providers[row].company;
 						return "";
 					});
-			});
+			
+				});
 		});
 	});
 
