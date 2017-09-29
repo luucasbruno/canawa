@@ -49,8 +49,7 @@ function initSideBar(nav){
 	addMenuItem(menu, 'fa-bookmark', 'Marcas', function(){
 		api.getAllBrands(function(json)
 		{
-			initContentPanel('Marcas', function(container)
-			{
+			initContentPanel('Marcas', function(container){
 				createAdvancedTable(
 					container,
 					json.brands.length,
@@ -69,9 +68,8 @@ function initSideBar(nav){
 	// Agrega Item Categorías
 	addMenuItem(menu, 'fa-tags', 'Categorías', function(){
 		api.getAllCategories(function(json){
-			initContentPanel('Categorías', function(container)
-			{
-				createTable(
+			initContentPanel('Categorías', function(container){
+				createAdvancedTable(
 					container,
 					json.categories.length,
 					["#", "Descripción" ],
@@ -89,9 +87,8 @@ function initSideBar(nav){
 	// Agrega Item Clientes
 	addMenuItem(menu, 'fa-users', 'Clientes', function(){
 		api.getAllClients(function(json){
-			initContentPanel('Clientes', function(container)
-			{
-				createTable(
+			initContentPanel('Clientes', function(container){
+				createAdvancedTable(
 					container,
 					json.clients.length,
 					["#", "Nombre", "CUIT", "Correo electrónico", "Teléfono", "Dirección" ],
@@ -113,8 +110,7 @@ function initSideBar(nav){
 	// Agrega Item Productos
 	addMenuItem(menu, 'fa-th-list', 'Productos', function(){
 		api.getAllProducts(function(json){
-			initContentPanel('Products', function(container)
-			{
+			initContentPanel('Products', function(container){
 				createAdvancedTable(
 					container,
 					json.products.length,
@@ -141,21 +137,20 @@ function initSideBar(nav){
 	// Agrega Item Proveedores
 	addMenuItem(menu, 'fa-truck', 'Proveedores', function(){
 		api.getAllProviders(function(json){
-			initContentPanel('Providers', function(container)
-			{
+			initContentPanel('Providers', function(container){
 				createAdvancedTable(
 					container,
 					json.providers.length,
 					["#", "Nombre", "Correo electrónico", "Teléfono", "Companía" ],
-					function(col, row)
-					{
+					function(col, row){
 						if(col == 0)	return json.providers[row].id;
 						if(col == 1)	return json.providers[row].name;
 						if(col == 2)	return json.providers[row].email;
 						if(col == 3)	return json.providers[row].phone;
 						if(col == 4)	return json.providers[row].company;
 						return "";
-					});
+				});
+				
 			
 				});
 		});
@@ -164,9 +159,8 @@ function initSideBar(nav){
 	// Agrega Item Ventas
 	addMenuItem(menu, 'fa-shopping-cart', 'Ventas', function(){
 		api.getAllSales(function(json){
-			initContentPanel('Ventas', function(container)
-			{
-				createTable(
+			initContentPanel('Ventas', function(container){
+				createAdvancedTable(
 					container,
 					json.sales.length,
 					["#", "Usuario", "Cliente", "Total", "Timestamp" ],
@@ -186,9 +180,8 @@ function initSideBar(nav){
 	addSubMenu("deliveries", menu, 'fa-car', 'Entregas', function(submenu){
 		let init = function(title, json)
 		{
-			initContentPanel(title, function(container)
-			{
-				createTable(
+			initContentPanel(title, function(container){
+				createAdvancedTable(
 					container,
 					json.deliveries.length,
 					["#", "#Venta", "Fecha", "Dirección", "Entregado" ],
@@ -203,24 +196,18 @@ function initSideBar(nav){
 					});
 			});
 		}
-		addSubMenuItem(submenu, "Hoy", function()
-		{
-			api.getTodayDeliveries(function(json)
-			{
+		addSubMenuItem(submenu, "Hoy", function(){
+			api.getTodayDeliveries(function(json){
 				init('Entregas de hoy', json);
 			});
 		});
-		addSubMenuItem(submenu, "Atrasadas", function()
-		{
-			api.getDelayedDeliveries(function(json)
-			{
+		addSubMenuItem(submenu, "Atrasadas", function(){
+			api.getDelayedDeliveries(function(json){
 				init('Entregas atrasadas', json);
 			});
 		});
-		addSubMenuItem(submenu, "Pendientes", function()
-		{
-			api.getPendingDeliveries(function(json)
-			{
+		addSubMenuItem(submenu, "Pendientes", function(){
+			api.getPendingDeliveries(function(json){
 				init('Entregas pendientes', json);
 			});
 		});
