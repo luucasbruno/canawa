@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 $(document).ready(function(){
     $('#data-table-simple').DataTable();
     
@@ -38,6 +39,8 @@ $(document).ready(function(){
 
 
 =======
+=======
+>>>>>>> b659e8684295bee85ebf118bea39e6a4963ad95a
 $(document).ready(function(){
     $('#data-table-simple').DataTable();
     
@@ -76,5 +79,8 @@ $(document).ready(function(){
     } );
 
 
+<<<<<<< HEAD
 >>>>>>> upd repo
+=======
+>>>>>>> b659e8684295bee85ebf118bea39e6a4963ad95a
     });
