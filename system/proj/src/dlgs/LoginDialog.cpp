@@ -32,12 +32,27 @@ void LoginDialog::accept()
 	req->addVariable("username", ui->txtUsername->text());
 	req->addVariable("password", ui->txtPassword->text());
 	req->exec(WWW "/auth/login", "POST");
+
+	ui->btnOk->setEnabled(false);
+	ui->btnCancel->setEnabled(false);
+	ui->txtUsername->setEnabled(false);
+	ui->txtPassword->setEnabled(false);
 }
 void LoginDialog::slotRequest_finished(HttpRequest* req)
 {
 	bool ok = false;
 	int code = req->getStatusCode();
-	if(code == 200)
+
+
+	ui->btnOk->setEnabled(true);
+	ui->btnCancel->setEnabled(true);
+	ui->txtUsername->setEnabled(true);
+	ui->txtPassword->setEnabled(true);
+	if(code == 0)
+	{
+		QMessageBox::information(this, tr("Error"), tr("Can't connect to server"));
+	}
+	else if(code == 200)
 	{
 		QByteArray a = req->getResponse();
 		QString    s = QString::fromUtf8(a.constData(), a.size());
@@ -59,15 +74,19 @@ void LoginDialog::slotRequest_finished(HttpRequest* req)
 					token = obj->value("token")->toString();
 					break;
 				case 100:
+					ui->txtUsername->setFocus();
 					QMessageBox::information(this, tr("Error"), tr("Username is empty"));
 					break;
 				case 101:
+					ui->txtPassword->setFocus();
 					QMessageBox::information(this, tr("Error"), tr("Password is empty"));
 					break;
 				case 102:
+					ui->txtUsername->setFocus();
 					QMessageBox::information(this, tr("Error"), tr("Invalid username"));
 					break;
 				case 103:
+					ui->txtPassword->setFocus();
 					QMessageBox::information(this, tr("Error"), tr("Invalid password"));
 					break;
 				default:
@@ -82,6 +101,8 @@ void LoginDialog::slotRequest_finished(HttpRequest* req)
 		QMessageBox::information(0, tr("Error"), tr("System error"));
 	}
 	if(ok)
+	{
 		QDialog::accept();
+	}
 }
 
