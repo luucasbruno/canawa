@@ -21,6 +21,7 @@ enum
 #include "dlgs/AboutDialog.h"
 
 #include "forms/HomeForm.h"
+#include "forms/ClientsForm.h"
 
 MainWindow::MainWindow(const QString &token, QWidget *parent) :
 	QMainWindow(parent),
@@ -139,6 +140,7 @@ void MainWindow::slotTreeView_itemDoubleClicked(QTreeWidgetItem* item, int colum
 			setCurrentWidget(new HomeForm());
 			break;
 		case TVW_CLIENTS:
+			setCurrentWidget(new ClientsForm(authToken));
 			break;
 		case TVW_PRODUCTS:
 			break;
