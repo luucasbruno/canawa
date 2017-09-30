@@ -63,7 +63,8 @@ SOURCES += \
     src/json/JsonValue.cpp \
     src/http/HttpRequest.cpp \
     src/dlgs/LoginDialog.cpp \
-    src/dlgs/AboutDialog.cpp
+    src/dlgs/AboutDialog.cpp \
+    src/forms/HomeForm.cpp
 
 HEADERS += \
         src/MainWindow.h \
@@ -79,12 +80,14 @@ HEADERS += \
     src/http/HttpRequest.h \
     src/dlgs/LoginDialog.h \
     src/dlgs/AboutDialog.h \
-    src/Settings.h
+    src/Settings.h \
+    src/forms/HomeForm.h
 
 FORMS += \
         src/MainWindow.ui \
     src/dlgs/LoginDialog.ui \
-    src/dlgs/AboutDialog.ui
+    src/dlgs/AboutDialog.ui \
+    src/forms/HomeForm.ui
 
 #---------------------------------------------------------------------------------------------------
 # Archivos de recursos

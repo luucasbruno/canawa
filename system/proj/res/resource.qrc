@@ -3,5 +3,6 @@
         <file>MainImage.png</file>
         <file>images/file-exit.png</file>
         <file>images/help-about.png</file>
+        <file>canawa-logo.png</file>
     </qresource>
 </RCC>
