@@ -70,7 +70,11 @@ SOURCES += \
     src/forms/DeliveriesForm.cpp \
     src/forms/ProductsForm.cpp \
     src/forms/ProvidersForm.cpp \
-    src/forms/SalesForm.cpp
+    src/forms/SalesForm.cpp \
+    src/forms/NewSaleForm.cpp \
+    src/dlgs/ChooseClientDialog.cpp \
+    src/dlgs/ChooseProductDialog.cpp \
+    src/dlgs/AddDeliveryDialog.cpp
 
 HEADERS += \
         src/MainWindow.h \
@@ -93,7 +97,11 @@ HEADERS += \
     src/forms/DeliveriesForm.h \
     src/forms/ProductsForm.h \
     src/forms/ProvidersForm.h \
-    src/forms/SalesForm.h
+    src/forms/SalesForm.h \
+    src/forms/NewSaleForm.h \
+    src/dlgs/ChooseClientDialog.h \
+    src/dlgs/ChooseProductDialog.h \
+    src/dlgs/AddDeliveryDialog.h
 
 FORMS += \
         src/MainWindow.ui \
@@ -105,7 +113,11 @@ FORMS += \
     src/forms/DeliveriesForm.ui \
     src/forms/ProductsForm.ui \
     src/forms/ProvidersForm.ui \
-    src/forms/SalesForm.ui
+    src/forms/SalesForm.ui \
+    src/forms/NewSaleForm.ui \
+    src/dlgs/ChooseClientDialog.ui \
+    src/dlgs/ChooseProductDialog.ui \
+    src/dlgs/AddDeliveryDialog.ui
 
 #---------------------------------------------------------------------------------------------------
 # Archivos de recursos

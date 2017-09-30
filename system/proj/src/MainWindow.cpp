@@ -28,6 +28,8 @@ enum
 #include "forms/ProvidersForm.h"
 #include "forms/SalesForm.h"
 
+#include "forms/NewSaleForm.h"
+
 MainWindow::MainWindow(const QString &token, QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
@@ -66,6 +68,8 @@ void MainWindow::initActions()
 {
 	connect(ui->actionFileExit, SIGNAL(triggered()), this, SLOT(slotAction()));
 	connect(ui->actionHelpAbout, SIGNAL(triggered()), this, SLOT(slotAction()));
+
+	connect(ui->actionEditNewSale, SIGNAL(triggered()), this, SLOT(slotAction()));
 }
 void MainWindow::initTreeView()
 {
@@ -106,7 +110,16 @@ void MainWindow::initSplitter()
 	splitter->setStretchFactor(0, 0);
 	splitter->setStretchFactor(1, 1);
 
+#if 0
 	setCentralWidget(splitter);
+#else
+	QWidget* central = new QWidget();
+	QHBoxLayout* l = new QHBoxLayout();
+	l->setContentsMargins(7, 7, 7, 7);
+	central->setLayout(l);
+	l->addWidget(splitter);
+	setCentralWidget(central);
+#endif
 }
 void MainWindow::setCurrentWidget(QWidget* w)
 {
@@ -133,6 +146,10 @@ void MainWindow::slotAction()
 	else if(action == ui->actionHelpAbout)
 	{
 		AboutDialog().exec();
+	}
+	else if(action == ui->actionEditNewSale)
+	{
+		setCurrentWidget(new NewSaleForm(authToken));
 	}
 }
 void MainWindow::slotTreeView_itemDoubleClicked(QTreeWidgetItem* item, int column)
@@ -166,6 +183,21 @@ void MainWindow::slotTreeView_itemDoubleClicked(QTreeWidgetItem* item, int colum
 }
 void MainWindow::slotTreeView_customContextMenuRequested(const QPoint& pos)
 {
+	QTreeWidgetItem* item;
+
+	if(NULL != (item = treeWidget->currentItem()))
+	{
+		QMenu menu;
+		switch(item->data(0, Qt::UserRole).toInt())
+		{
+			case TVW_SALES:
+				menu.addAction(ui->actionEditNewSale);
+				break;
+			default:
+				return;
+		}
+		menu.exec(QCursor::pos());
+	}
 }
 
 

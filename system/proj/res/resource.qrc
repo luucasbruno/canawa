@@ -4,5 +4,10 @@
         <file>images/file-exit.png</file>
         <file>images/help-about.png</file>
         <file>canawa-logo.png</file>
+        <file>icons/delete.png</file>
+        <file>icons/plus.png</file>
+        <file>icons/select.png</file>
+        <file>icons/buy.png</file>
+        <file>icons/minus.png</file>
     </qresource>
 </RCC>
