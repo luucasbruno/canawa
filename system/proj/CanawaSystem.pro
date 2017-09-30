@@ -78,7 +78,8 @@ HEADERS += \
     src/http/http.h \
     src/http/HttpRequest.h \
     src/dlgs/LoginDialog.h \
-    src/dlgs/AboutDialog.h
+    src/dlgs/AboutDialog.h \
+    src/Settings.h
 
 FORMS += \
         src/MainWindow.ui \
