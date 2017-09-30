@@ -69,7 +69,8 @@ SOURCES += \
     src/forms/CategoriesForm.cpp \
     src/forms/DeliveriesForm.cpp \
     src/forms/ProductsForm.cpp \
-    src/forms/ProvidersForm.cpp
+    src/forms/ProvidersForm.cpp \
+    src/forms/SalesForm.cpp
 
 HEADERS += \
         src/MainWindow.h \
@@ -91,7 +92,8 @@ HEADERS += \
     src/forms/CategoriesForm.h \
     src/forms/DeliveriesForm.h \
     src/forms/ProductsForm.h \
-    src/forms/ProvidersForm.h
+    src/forms/ProvidersForm.h \
+    src/forms/SalesForm.h
 
 FORMS += \
         src/MainWindow.ui \
@@ -102,7 +104,8 @@ FORMS += \
     src/forms/CategoriesForm.ui \
     src/forms/DeliveriesForm.ui \
     src/forms/ProductsForm.ui \
-    src/forms/ProvidersForm.ui
+    src/forms/ProvidersForm.ui \
+    src/forms/SalesForm.ui
 
 #---------------------------------------------------------------------------------------------------
 # Archivos de recursos

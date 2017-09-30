@@ -26,6 +26,7 @@ enum
 #include "forms/DeliveriesForm.h"
 #include "forms/ProductsForm.h"
 #include "forms/ProvidersForm.h"
+#include "forms/SalesForm.h"
 
 MainWindow::MainWindow(const QString &token, QWidget *parent) :
 	QMainWindow(parent),
@@ -156,6 +157,7 @@ void MainWindow::slotTreeView_itemDoubleClicked(QTreeWidgetItem* item, int colum
 			setCurrentWidget(new CategoriesForm(authToken));
 			break;
 		case TVW_SALES:
+			setCurrentWidget(new SalesForm(authToken));
 			break;
 		case TVW_DELIVERIES:
 			setCurrentWidget(new DeliveriesForm(authToken));
@@ -165,3 +167,5 @@ void MainWindow::slotTreeView_itemDoubleClicked(QTreeWidgetItem* item, int colum
 void MainWindow::slotTreeView_customContextMenuRequested(const QPoint& pos)
 {
 }
+
+
