@@ -1,14 +1,12 @@
 
-function createTable(container, rows, columns, getTableItem)
-{
+function createTable(container, rows, columns, getTableItem){
 	let s = '';
 	
 	s += '<div class="panel-body">';
 		s += '<table class="table table-striped table-bordered table-hover">';
 			s += '<thead>';
 				s += '<tr>';
-					for(i = 0; i < columns.length; i++)
-					{
+					for(i = 0; i < columns.length; i++){
 						s += '<th>'+columns[i]+'</th>';
 					}
 				s += '</tr>';
@@ -31,11 +29,10 @@ function createTable(container, rows, columns, getTableItem)
 	container.append(s);
 }
 
-function createAdvancedTable(container, rows, columns, getTableItem)
-{
+function createAdvancedTable(container, rows, columns, getTableItem){
 	let s = `
 	<div class="panel-body">
-		<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+		<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 			<thead>
 				<tr>`;
 					for(i = 0; i < columns.length; i++)
@@ -63,6 +60,21 @@ function createAdvancedTable(container, rows, columns, getTableItem)
 	</div>
 	`;
 	container.html(s);
+
+
+	///----------- Inicialización de las dataTables
+	$(document).ready(function() {
+		var table = $('#dataTables').DataTable({
+			stateSave: true
+		});
+		$('#dataTables tbody').on('click', 'tr', function(){
+			$(this).toggleClass('selected');
+		});
+		$('#submit-products').click( function (){
+			let data = table.rows('.selected').data(); // array con los datos de las filas que fueron seleccionadas
+			alert( data[0][0]  );
+		} );
+	} );
 }
 
 
