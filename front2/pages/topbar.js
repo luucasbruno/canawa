@@ -104,6 +104,7 @@ function initTopBar(nav){
 	//
 	// Crear los dropdowns
 	//
+	/*
 	addDropdown(links, 'fa-envelope', "dropdown-messages", function(ul){
 		addDropdownMessage(ul, 'John Smith', 'Yesterday', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...', function(){});
 		addDropdownDiv(ul);
@@ -136,6 +137,42 @@ function initTopBar(nav){
 		addDropdownAlert(ul, 'fa-upload', 'Server Rebooted', '4 minutes ago', function(){});
 		addDropdownDiv(ul);
 		addDropdownFooter(ul, 'See All Alerts', function(){});
+	});
+	addDropdown(links, 'fa-user', "dropdown-user", function(ul){
+		addDropdownItem(ul, 'fa-user', 'Perfil', function(){});
+		addDropdownItem(ul, 'fa-gear', 'Configuración', function(){});
+		addDropdownDiv(ul);
+		addDropdownItem(ul, 'fa-sign-out', 'Salir', function(){
+			clearAllCookies();
+			location.reload();
+		});
+	});
+	*/
+	addDropdown(links, 'fa-bell', "dropdown-alerts", function(ul)
+	{
+		let needDivider = false;
+		
+		// 1) Obtener las entregas de hoy
+		api.getTodayDeliveries(function(json)
+		{
+			if(json.ret == 0 && json.deliveries.length > 0)
+			{
+				needDivider = true;
+				addDropdownAlert(ul, 'fa-car', 'Entregas de hoy', json.deliveries.length, function(){initDeliveriesPanel('today');});
+			}
+			// 2) Obtener las entregas atrasadas
+			api.getPendingDeliveries(function(json)
+			{
+				if(needDivider)
+					addDropdownDiv(ul);
+				if(json.ret == 0 && json.deliveries.length > 0)
+				{
+					needDivider = true;
+					addDropdownAlert(ul, 'fa-car', 'Entregas atrasadas', json.deliveries.length, function(){initDeliveriesPanel('delayed');});
+				}
+				// 3) Por ahora nada más, ...
+			});
+		});
 	});
 	addDropdown(links, 'fa-user', "dropdown-user", function(ul){
 		addDropdownItem(ul, 'fa-user', 'Perfil', function(){});

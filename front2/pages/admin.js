@@ -1,5 +1,9 @@
 
-function initAdminPanel(){
+/**
+ * Iniciar panel principal de administración
+ */
+function initAdminPanel()
+{
 	let nav = $('<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0"></nav>');
 	let wrapper = $('#wrapper');
 
@@ -25,7 +29,12 @@ function initAdminPanel(){
 	});
 }
 
-//--------------------------------------------------------------------------------------------------
+/**
+ * Iniciar un panel sin conocer cual será su contenido
+ *
+ * @param {string}   title  - Título del panel
+ * @param {callback} filler - Función callback que generará el contenido
+ */
 function initContentPanel(title, filler)
 {
 	let header = $("#page-header");

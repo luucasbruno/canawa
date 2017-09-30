@@ -178,38 +178,15 @@ function initSideBar(nav){
 	});
 	// Agrega Item Entregas	
 	addSubMenu("deliveries", menu, 'fa-car', 'Entregas', function(submenu){
-		let init = function(title, json)
-		{
-			initContentPanel(title, function(container){
-				createAdvancedTable(
-					container,
-					json.deliveries.length,
-					["#", "#Venta", "Fecha", "Dirección", "Entregado" ],
-					function(col, row)
-					{
-						if(col == 0)	return json.deliveries[row].id;
-						if(col == 1)	return json.deliveries[row].sale_id;
-						if(col == 2)	return json.deliveries[row].date;
-						if(col == 3)	return json.deliveries[row].location;
-						if(col == 4)	return json.deliveries[row].delivered == 1 ? "Si" : "No";
-						return "";
-					});
-			});
-		}
+		
 		addSubMenuItem(submenu, "Hoy", function(){
-			api.getTodayDeliveries(function(json){
-				init('Entregas de hoy', json);
-			});
+			initDeliveriesPanel('today');
 		});
 		addSubMenuItem(submenu, "Atrasadas", function(){
-			api.getDelayedDeliveries(function(json){
-				init('Entregas atrasadas', json);
-			});
+			initDeliveriesPanel('delayed');
 		});
 		addSubMenuItem(submenu, "Pendientes", function(){
-			api.getPendingDeliveries(function(json){
-				init('Entregas pendientes', json);
-			});
+			initDeliveriesPanel('pending');
 		});
 	});
 	
