@@ -47,10 +47,25 @@ DESTDIR = ../bin
 #---------------------------------------------------------------------------------------------------
 SOURCES += \
         src/main.cpp \
-        src/MainWindow.cpp
+        src/MainWindow.cpp \
+    src/json/JsonArray.cpp \
+    src/json/JsonInput.cpp \
+    src/json/JsonLexer.cpp \
+    src/json/JsonObject.cpp \
+    src/json/JsonParser.cpp \
+    src/json/JsonToken.cpp \
+    src/json/JsonValue.cpp
 
 HEADERS += \
-        src/MainWindow.h
+        src/MainWindow.h \
+    src/json/json.h \
+    src/json/JsonArray.h \
+    src/json/JsonInput.h \
+    src/json/JsonLexer.h \
+    src/json/JsonObject.h \
+    src/json/JsonParser.h \
+    src/json/JsonToken.h \
+    src/json/JsonValue.h
 
 FORMS += \
         src/MainWindow.ui
