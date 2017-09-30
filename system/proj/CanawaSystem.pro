@@ -22,6 +22,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+
+#---------------------------------------------------------------------------------------------------
+# Directorios de inclusión
+#---------------------------------------------------------------------------------------------------
+INCLUDEPATH += src
+
 #---------------------------------------------------------------------------------------------------
 # Versión
 #---------------------------------------------------------------------------------------------------
@@ -55,7 +61,8 @@ SOURCES += \
     src/json/JsonParser.cpp \
     src/json/JsonToken.cpp \
     src/json/JsonValue.cpp \
-    src/http/HttpRequest.cpp
+    src/http/HttpRequest.cpp \
+    src/dlgs/LoginDialog.cpp
 
 HEADERS += \
         src/MainWindow.h \
@@ -68,7 +75,9 @@ HEADERS += \
     src/json/JsonToken.h \
     src/json/JsonValue.h \
     src/http/http.h \
-    src/http/HttpRequest.h
+    src/http/HttpRequest.h \
+    src/dlgs/LoginDialog.h
 
 FORMS += \
-        src/MainWindow.ui
+        src/MainWindow.ui \
+    src/dlgs/LoginDialog.ui
