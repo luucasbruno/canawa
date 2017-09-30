@@ -23,6 +23,7 @@ enum
 #include "forms/HomeForm.h"
 #include "forms/ClientsForm.h"
 #include "forms/CategoriesForm.h"
+#include "forms/DeliveriesForm.h"
 
 MainWindow::MainWindow(const QString &token, QWidget *parent) :
 	QMainWindow(parent),
@@ -153,6 +154,7 @@ void MainWindow::slotTreeView_itemDoubleClicked(QTreeWidgetItem* item, int colum
 		case TVW_SALES:
 			break;
 		case TVW_DELIVERIES:
+			setCurrentWidget(new DeliveriesForm(authToken));
 			break;
 	}
 }

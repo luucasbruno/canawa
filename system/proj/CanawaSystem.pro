@@ -66,7 +66,8 @@ SOURCES += \
     src/dlgs/AboutDialog.cpp \
     src/forms/HomeForm.cpp \
     src/forms/ClientsForm.cpp \
-    src/forms/CategoriesForm.cpp
+    src/forms/CategoriesForm.cpp \
+    src/forms/DeliveriesForm.cpp
 
 HEADERS += \
         src/MainWindow.h \
@@ -85,7 +86,8 @@ HEADERS += \
     src/Settings.h \
     src/forms/HomeForm.h \
     src/forms/ClientsForm.h \
-    src/forms/CategoriesForm.h
+    src/forms/CategoriesForm.h \
+    src/forms/DeliveriesForm.h
 
 FORMS += \
         src/MainWindow.ui \
@@ -93,7 +95,8 @@ FORMS += \
     src/dlgs/AboutDialog.ui \
     src/forms/HomeForm.ui \
     src/forms/ClientsForm.ui \
-    src/forms/CategoriesForm.ui
+    src/forms/CategoriesForm.ui \
+    src/forms/DeliveriesForm.ui
 
 #---------------------------------------------------------------------------------------------------
 # Archivos de recursos
