@@ -26,15 +26,15 @@ void CategoriesForm::slotRequest_finished(HttpRequest* req)
 	{
 		if(obj->value("ret")->toInt() == 0)
 		{
-			JsonArray* clients = obj->value("categories")->toArray();
+			JsonArray* categories = obj->value("categories")->toArray();
 
-			for(int i = 0; i < clients->size(); i++)
+			for(int i = 0; i < categories->size(); i++)
 			{
-				JsonObject* cli = clients->at(i)->toObject();
+				JsonObject* cat = categories->at(i)->toObject();
 
 				ui->tableWidget->insertRow(i);
-				ui->tableWidget->setItem(i, 0, new QTableWidgetItem(cli->value("id")->toString()));
-				ui->tableWidget->setItem(i, 1, new QTableWidgetItem(cli->value("description")->toString()));
+				ui->tableWidget->setItem(i, 0, new QTableWidgetItem(cat->value("id")->toString()));
+				ui->tableWidget->setItem(i, 1, new QTableWidgetItem(cat->value("description")->toString()));
 			}
 		}
 	}
