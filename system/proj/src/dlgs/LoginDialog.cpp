@@ -43,7 +43,6 @@ void LoginDialog::slotRequest_finished(HttpRequest* req)
 	bool ok = false;
 	int code = req->getStatusCode();
 
-
 	ui->btnOk->setEnabled(true);
 	ui->btnCancel->setEnabled(true);
 	ui->txtUsername->setEnabled(true);
