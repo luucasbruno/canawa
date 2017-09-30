@@ -52,10 +52,27 @@ void LoginDialog::slotRequest_finished(HttpRequest* req)
 
 		if(NULL != (obj = JsonParser().parse(s)))
 		{
-			if(obj->value("ret")->toInt() == 0)
+			switch(obj->value("ret")->toInt())
 			{
-				ok = true;
-				token = obj->value("token")->toString();
+				case 0:
+					ok = true;
+					token = obj->value("token")->toString();
+					break;
+				case 100:
+					QMessageBox::information(this, tr("Error"), tr("Username is empty"));
+					break;
+				case 101:
+					QMessageBox::information(this, tr("Error"), tr("Password is empty"));
+					break;
+				case 102:
+					QMessageBox::information(this, tr("Error"), tr("Invalid username"));
+					break;
+				case 103:
+					QMessageBox::information(this, tr("Error"), tr("Invalid password"));
+					break;
+				default:
+					QMessageBox::information(this, tr("Error"), tr("Unknown error (%1)").arg(obj->value("ret")->toInt()));
+					break;
 			}
 			delete obj;
 		}
