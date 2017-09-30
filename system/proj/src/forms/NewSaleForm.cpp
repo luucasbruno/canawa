@@ -46,25 +46,33 @@ void NewSaleForm::slotButton()
 
 	if(btn == ui->btnSale)
 	{
-		QString productIds;
-		QString productCounts;
-
-		for(int i = 0; i < ui->tableWidget->rowCount(); i++)
+		if(QMessageBox::Yes == QMessageBox::question(
+				0,
+				tr("Sell"),
+				tr("Are you sure ready to sell?"),
+				QMessageBox::Yes,
+				QMessageBox::No))
 		{
-			if(i != 0)
+			QString productIds;
+			QString productCounts;
+
+			for(int i = 0; i < ui->tableWidget->rowCount(); i++)
 			{
-				productIds += ",";
-				productCounts += ",";
+				if(i != 0)
+				{
+					productIds += ",";
+					productCounts += ",";
+				}
+				productIds += ui->tableWidget->item(i, 0)->text();
+				productCounts += ui->tableWidget->item(i, 2)->text();
 			}
-			productIds += ui->tableWidget->item(i, 0)->text();
-			productCounts += ui->tableWidget->item(i, 2)->text();
+			HttpRequest* req = new HttpRequest(this, SLOT(slotRequest_finished(HttpRequest*)));
+			req->addVariable("client_id", clientId);
+			req->addVariable("client_type", "0");	// TODO:
+			req->addVariable("product_ids", productIds);
+			req->addVariable("product_counts", productCounts);
+			req->exec(WWW"/sales", "POST");
 		}
-		HttpRequest* req = new HttpRequest(this, SLOT(slotRequest_finished(HttpRequest*)));
-		req->addVariable("client_id", clientId);
-		req->addVariable("client_type", "0");	// TODO:
-		req->addVariable("product_ids", productIds);
-		req->addVariable("product_counts", productCounts);
-		req->exec(WWW"/sales", "POST");
 	}
 	else if(btn == ui->btnSelectClient)
 	{
@@ -119,7 +127,15 @@ void NewSaleForm::slotButton()
 	}
 	else if(btn == ui->btnReset)
 	{
-		reset();
+		if(QMessageBox::Yes == QMessageBox::question(
+				0,
+				tr("Reset"),
+				tr("Are you sure do you want reset?"),
+				QMessageBox::Yes,
+				QMessageBox::No))
+		{
+			reset();
+		}
 	}
 }
 void NewSaleForm::slotTableWidget_itemSelectionChanged()
