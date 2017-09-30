@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,7 +23,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 #---------------------------------------------------------------------------------------------------
-# VersiÃ³n
+# Versión
 #---------------------------------------------------------------------------------------------------
 DEFINES += MAJOR_VERSION=1
 DEFINES += MINOR_VERSION=0
@@ -43,7 +43,7 @@ TARGET = CanawaSystem
 DESTDIR = ../bin
 
 #---------------------------------------------------------------------------------------------------
-# Archivos de cÃ³digo
+# Archivos de código
 #---------------------------------------------------------------------------------------------------
 SOURCES += \
         src/main.cpp \
@@ -54,7 +54,8 @@ SOURCES += \
     src/json/JsonObject.cpp \
     src/json/JsonParser.cpp \
     src/json/JsonToken.cpp \
-    src/json/JsonValue.cpp
+    src/json/JsonValue.cpp \
+    src/http/HttpRequest.cpp
 
 HEADERS += \
         src/MainWindow.h \
@@ -65,7 +66,9 @@ HEADERS += \
     src/json/JsonObject.h \
     src/json/JsonParser.h \
     src/json/JsonToken.h \
-    src/json/JsonValue.h
+    src/json/JsonValue.h \
+    src/http/http.h \
+    src/http/HttpRequest.h
 
 FORMS += \
         src/MainWindow.ui
