@@ -8,7 +8,7 @@
  */
 class Provider
 {
-	private $idProveedor;
+	private $providerId;
 	
 	/**
 	 * Constructor
@@ -17,7 +17,7 @@ class Provider
 	 */
 	public function __construct($id)
 	{
-		$this->idProveedor = $id;
+		$this->providerId = $id;
 	}
 	/**
 	 * Obtener el id del proveedor
@@ -26,7 +26,7 @@ class Provider
 	 */
 	public function getId()
 	{
-		return $this->idProveedor;
+		return $this->providerId;
 	}
 	/**
 	 * Obtener el nombre del proveedor
@@ -35,7 +35,7 @@ class Provider
 	 */
 	public function getName()
 	{
-		return getFieldFromTable('PROVIDER', 'NAME', $this->idProveedor);
+		return getFieldFromTable('PROVIDER', 'NAME', $this->providerId);
 	}
 	/**
 	 * Obtener el email del proveedor
@@ -44,7 +44,7 @@ class Provider
 	 */
 	public function getEmail()
 	{
-		return getFieldFromTable('PROVIDER', 'EMAIL', $this->idProveedor);
+		return getFieldFromTable('PROVIDER', 'EMAIL', $this->providerId);
 	}
 	/**
 	 * Obtener el teléfono del proveedor
@@ -53,7 +53,7 @@ class Provider
 	 */
 	public function getPhone()
 	{
-		return getFieldFromTable('PROVIDER', 'PHONE', $this->idProveedor);
+		return getFieldFromTable('PROVIDER', 'PHONE', $this->providerId);
 	}
 	/**
 	 * Obtener el Empresa del proveedor
@@ -62,7 +62,7 @@ class Provider
 	 */
 	public function getCompany()
 	{
-		return getFieldFromTable('PROVIDER', 'COMPANY', $this->idProveedor);
+		return getFieldFromTable('PROVIDER', 'COMPANY', $this->providerId);
 	}
 }
 

@@ -10,7 +10,7 @@ include_once 'core/Client.php';
  */
 class Sale
 {
-	private $idSale;
+	private $saleId;
 	
 	/**
 	 * Constructor
@@ -19,7 +19,7 @@ class Sale
 	 */
 	public function __construct($id)
 	{
-		$this->idSale = $id;
+		$this->saleId = $id;
 	}
 	/**
 	 * Obtener el id de la venta
@@ -28,7 +28,7 @@ class Sale
 	 */
 	public function getId()
 	{
-		return $this->idSale;
+		return $this->saleId;
 	}
 	/**
 	 * Obtener el usuario que hizo la venta
@@ -37,7 +37,7 @@ class Sale
 	 */
 	public function getUser()
 	{
-		return new User(getFieldFromTable('SALE', 'USER_ID', $this->idSale));
+		return new User(getFieldFromTable('SALE', 'USER_ID', $this->saleId));
 	}
 	/**
 	 * Obtener el cliente que hizo que es la compra
@@ -46,7 +46,7 @@ class Sale
 	 */
 	public function getClient()
 	{
-		return new Client(getFieldFromTable('SALE', 'CLIENT_ID', $this->idSale));
+		return new Client(getFieldFromTable('SALE', 'CLIENT_ID', $this->saleId));
 	}
 	/**
 	 * Obtener el total de la venta
@@ -55,7 +55,7 @@ class Sale
 	 */
 	public function getTotal()
 	{
-		return getFieldFromTable('SALE', 'TOTAL', $this->idSale);
+		return getFieldFromTable('SALE', 'TOTAL', $this->saleId);
 	}
 	/**
 	 * Obtener fecha de estampa de la venta
@@ -64,7 +64,7 @@ class Sale
 	 */
 	public function getTimestamp()
 	{
-		return getFieldFromTable('SALE', 'TIMESTAMP', $this->idSale);
+		return getFieldFromTable('SALE', 'TIMESTAMP', $this->saleId);
 	}
 }
 
