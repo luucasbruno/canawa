@@ -9,17 +9,26 @@ DeliveriesForm::DeliveriesForm(QString token, QWidget *parent) :
 	ui(new Ui::DeliveriesForm)
 {
 	ui->setupUi(this);
+	authToken = token;
 
-	HttpRequest* req = new HttpRequest(this, SLOT(slotRequest_finished(HttpRequest*)));
-	req->addHeader("Authorization", token);
-	req->exec(WWW"/deliveries", "GET");
+	connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotComboBox_currentIndexChanged(int)));
+
+	getDeliveries("all");
 }
 
 DeliveriesForm::~DeliveriesForm()
 {
 	delete ui;
 }
-
+void DeliveriesForm::getDeliveries(QString mode)
+{
+	ui->comboBox->setEnabled(false);
+	ui->tableWidget->setEnabled(false);
+	HttpRequest* req = new HttpRequest(this, SLOT(slotRequest_finished(HttpRequest*)));
+	req->addHeader("Authorization", authToken);
+	req->addVariable("mode", mode);
+	req->exec(WWW"/deliveries", "GET");
+}
 void DeliveriesForm::slotRequest_finished(HttpRequest* req)
 {
 	JsonObject* obj;
@@ -40,5 +49,17 @@ void DeliveriesForm::slotRequest_finished(HttpRequest* req)
 				ui->tableWidget->setItem(i, 3, new QTableWidgetItem(del->value("delivered")->toString()));
 			}
 		}
+	}
+	ui->comboBox->setEnabled(true);
+	ui->tableWidget->setEnabled(true);
+}
+void DeliveriesForm::slotComboBox_currentIndexChanged(int index)
+{
+	switch(index)
+	{
+		case 0:		getDeliveries("all");		break;
+		case 1:		getDeliveries("today");		break;
+		case 2:		getDeliveries("delayed");	break;
+		case 3:		getDeliveries("pending");	break;
 	}
 }
