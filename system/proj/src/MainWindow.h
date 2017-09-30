@@ -17,6 +17,9 @@ public:
 	~MainWindow();
 
 private:
+	void initActions();
+private slots:
+	void slotAction();
 };
 
 #endif // MAINWINDOW_H

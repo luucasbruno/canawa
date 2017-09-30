@@ -62,7 +62,8 @@ SOURCES += \
     src/json/JsonToken.cpp \
     src/json/JsonValue.cpp \
     src/http/HttpRequest.cpp \
-    src/dlgs/LoginDialog.cpp
+    src/dlgs/LoginDialog.cpp \
+    src/dlgs/AboutDialog.cpp
 
 HEADERS += \
         src/MainWindow.h \
@@ -76,8 +77,18 @@ HEADERS += \
     src/json/JsonValue.h \
     src/http/http.h \
     src/http/HttpRequest.h \
-    src/dlgs/LoginDialog.h
+    src/dlgs/LoginDialog.h \
+    src/dlgs/AboutDialog.h
 
 FORMS += \
         src/MainWindow.ui \
-    src/dlgs/LoginDialog.ui
+    src/dlgs/LoginDialog.ui \
+    src/dlgs/AboutDialog.ui
+
+#---------------------------------------------------------------------------------------------------
+# Archivos de recursos
+#---------------------------------------------------------------------------------------------------
+
+RESOURCES += res/resource.qrc
+win32:RC_FILE = res/resource_win32.rc
+
