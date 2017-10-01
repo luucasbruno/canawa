@@ -20,6 +20,7 @@ enum
 #include "Settings.h"
 #include "dlgs/AboutDialog.h"
 #include "dlgs/AddClientDialog.h"
+#include "dlgs/AddProviderDialog.h"
 
 #include "forms/HomeForm.h"
 #include "forms/ClientsForm.h"
@@ -72,6 +73,7 @@ void MainWindow::initActions()
 
 	connect(ui->actionEditNewSale, SIGNAL(triggered()), this, SLOT(slotAction()));
 	connect(ui->actionEditAddClient, SIGNAL(triggered()), this, SLOT(slotAction()));
+	connect(ui->actionEditAddProvider, SIGNAL(triggered()), this, SLOT(slotAction()));
 }
 void MainWindow::initTreeView()
 {
@@ -157,6 +159,10 @@ void MainWindow::slotAction()
 	{
 		AddClientDialog().exec();
 	}
+	else if(action == ui->actionEditAddProvider)
+	{
+		AddProviderDialog().exec();
+	}
 }
 void MainWindow::slotTreeView_itemDoubleClicked(QTreeWidgetItem* item, int column)
 {
@@ -201,6 +207,9 @@ void MainWindow::slotTreeView_customContextMenuRequested(const QPoint& pos)
 				break;
 			case TVW_CLIENTS:
 				menu.addAction(ui->actionEditAddClient);
+				break;
+			case TVW_PROVIDERS:
+				menu.addAction(ui->actionEditAddProvider);
 				break;
 			default:
 				return;

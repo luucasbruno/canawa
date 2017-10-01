@@ -75,6 +75,11 @@
     <string>Add client</string>
    </property>
   </action>
+  <action name="actionEditAddProvider">
+   <property name="text">
+    <string>Add provider</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
