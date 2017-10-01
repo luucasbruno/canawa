@@ -76,7 +76,11 @@ SOURCES += \
     src/dlgs/ChooseProductDialog.cpp \
     src/dlgs/AddDeliveryDialog.cpp \
     src/dlgs/AddClientDialog.cpp \
-    src/dlgs/AddProviderDialog.cpp
+    src/dlgs/AddProviderDialog.cpp \
+    src/dlgs/AddProductDialog.cpp \
+    src/dlgs/AddProductCategoryDialog.cpp \
+    src/dlgs/AddBrandDialog.cpp \
+    src/forms/BrandsForm.cpp
 
 HEADERS += \
         src/MainWindow.h \
@@ -105,7 +109,11 @@ HEADERS += \
     src/dlgs/ChooseProductDialog.h \
     src/dlgs/AddDeliveryDialog.h \
     src/dlgs/AddClientDialog.h \
-    src/dlgs/AddProviderDialog.h
+    src/dlgs/AddProviderDialog.h \
+    src/dlgs/AddProductDialog.h \
+    src/dlgs/AddProductCategoryDialog.h \
+    src/dlgs/AddBrandDialog.h \
+    src/forms/BrandsForm.h
 
 FORMS += \
         src/MainWindow.ui \
@@ -123,7 +131,11 @@ FORMS += \
     src/dlgs/ChooseProductDialog.ui \
     src/dlgs/AddDeliveryDialog.ui \
     src/dlgs/AddClientDialog.ui \
-    src/dlgs/AddProviderDialog.ui
+    src/dlgs/AddProviderDialog.ui \
+    src/dlgs/AddProductDialog.ui \
+    src/dlgs/AddProductCategoryDialog.ui \
+    src/dlgs/AddBrandDialog.ui \
+    src/forms/BrandsForm.ui
 
 #---------------------------------------------------------------------------------------------------
 # Archivos de recursos

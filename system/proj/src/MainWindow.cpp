@@ -10,6 +10,7 @@ enum
 	TVW_CATEGORIES,
 	TVW_SALES,
 	TVW_DELIVERIES,
+	TVW_BRANDS,
 };
 
 #include <QSettings>
@@ -21,9 +22,12 @@ enum
 #include "dlgs/AboutDialog.h"
 #include "dlgs/AddClientDialog.h"
 #include "dlgs/AddProviderDialog.h"
+#include "dlgs/AddProductDialog.h"
+#include "dlgs/AddBrandDialog.h"
 
 #include "forms/HomeForm.h"
 #include "forms/ClientsForm.h"
+#include "forms/BrandsForm.h"
 #include "forms/CategoriesForm.h"
 #include "forms/DeliveriesForm.h"
 #include "forms/ProductsForm.h"
@@ -72,7 +76,9 @@ void MainWindow::initActions()
 	connect(ui->actionHelpAbout, SIGNAL(triggered()), this, SLOT(slotAction()));
 
 	connect(ui->actionEditNewSale, SIGNAL(triggered()), this, SLOT(slotAction()));
+	connect(ui->actionEditAddBrand, SIGNAL(triggered()), this, SLOT(slotAction()));
 	connect(ui->actionEditAddClient, SIGNAL(triggered()), this, SLOT(slotAction()));
+	connect(ui->actionEditAddProduct, SIGNAL(triggered()), this, SLOT(slotAction()));
 	connect(ui->actionEditAddProvider, SIGNAL(triggered()), this, SLOT(slotAction()));
 }
 void MainWindow::initTreeView()
@@ -83,6 +89,7 @@ void MainWindow::initTreeView()
 	newTreeItem(tr("Clients"), TVW_CLIENTS);
 	newTreeItem(tr("Products"), TVW_PRODUCTS);
 	newTreeItem(tr("Providers"), TVW_PROVIDERS);
+	newTreeItem(tr("Brands"), TVW_BRANDS);
 	newTreeItem(tr("Categories"), TVW_CATEGORIES);
 	newTreeItem(tr("Sales"), TVW_SALES);
 	newTreeItem(tr("Deliveries"), TVW_DELIVERIES);
@@ -157,11 +164,19 @@ void MainWindow::slotAction()
 	}
 	else if(action == ui->actionEditAddClient)
 	{
-		AddClientDialog().exec();
+		AddClientDialog(authToken).exec();
+	}
+	else if(action == ui->actionEditAddProduct)
+	{
+		AddProductDialog(authToken).exec();
 	}
 	else if(action == ui->actionEditAddProvider)
 	{
-		AddProviderDialog().exec();
+		AddProviderDialog(authToken).exec();
+	}
+	else if(action == ui->actionEditAddBrand)
+	{
+		AddBrandDialog(authToken).exec();
 	}
 }
 void MainWindow::slotTreeView_itemDoubleClicked(QTreeWidgetItem* item, int column)
@@ -178,6 +193,9 @@ void MainWindow::slotTreeView_itemDoubleClicked(QTreeWidgetItem* item, int colum
 			break;
 		case TVW_PRODUCTS:
 			setCurrentWidget(new ProductsForm(authToken));
+			break;
+		case TVW_BRANDS:
+			setCurrentWidget(new BrandsForm(authToken));
 			break;
 		case TVW_PROVIDERS:
 			setCurrentWidget(new ProvidersForm(authToken));
@@ -208,8 +226,14 @@ void MainWindow::slotTreeView_customContextMenuRequested(const QPoint& pos)
 			case TVW_CLIENTS:
 				menu.addAction(ui->actionEditAddClient);
 				break;
+			case TVW_PRODUCTS:
+				menu.addAction(ui->actionEditAddProduct);
+				break;
 			case TVW_PROVIDERS:
 				menu.addAction(ui->actionEditAddProvider);
+				break;
+			case TVW_BRANDS:
+				menu.addAction(ui->actionEditAddBrand);
 				break;
 			default:
 				return;

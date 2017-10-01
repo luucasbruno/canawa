@@ -27,7 +27,7 @@ class ProductManager
 	 * @see ERROR_PRODUCT___INVALID_PROVIDER_ID
 	 * @see ERROR_PRODUCT___INVALID_CATEGORY_ID
 	 * @see ERROR_PRODUCT___INVALID_RETAIL_PRICE
-	 * @see ERROR_PRODUCT___INVALID_WHOLESALER_PRICE
+	 * @see ERROR_PRODUCT___INVALID_WHOLESALE_PRICE
 	 */
 	public static function addProduct($name, $brandId, $providerId, $categoryId, $retailPrice, $wholesalePrice)
 	{

@@ -13,8 +13,9 @@ class AddClientDialog : public QDialog
 {
     Q_OBJECT
 	Ui::AddClientDialog*	ui;
+	QString					authToken;
 public:
-    explicit AddClientDialog(QWidget *parent = 0);
+	explicit AddClientDialog(QString token, QWidget *parent = 0);
     ~AddClientDialog();
 private slots:
 	void accept();

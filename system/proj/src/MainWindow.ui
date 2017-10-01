@@ -80,6 +80,16 @@
     <string>Add provider</string>
    </property>
   </action>
+  <action name="actionEditAddProduct">
+   <property name="text">
+    <string>Add product</string>
+   </property>
+  </action>
+  <action name="actionEditAddBrand">
+   <property name="text">
+    <string>Add brand</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

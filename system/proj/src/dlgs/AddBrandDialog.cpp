@@ -1,44 +1,38 @@
-#include "AddProviderDialog.h"
-#include "ui_AddProviderDialog.h"
+#include "AddBrandDialog.h"
+#include "ui_AddBrandDialog.h"
 
 #include <src/http/http.h>
 #include <src/json/json.h>
 
 #include <QMessageBox>
 
-AddProviderDialog::AddProviderDialog(QString token, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::AddProviderDialog)
+AddBrandDialog::AddBrandDialog(QString token, QWidget *parent) :
+	QDialog(parent),
+	ui(new Ui::AddBrandDialog)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 	authToken = token;
 	setMaximumHeight(sizeHint().height());
 	setMinimumHeight(sizeHint().height());
 }
 
-AddProviderDialog::~AddProviderDialog()
+AddBrandDialog::~AddBrandDialog()
 {
-    delete ui;
+	delete ui;
 }
-void AddProviderDialog::accept()
+void AddBrandDialog::accept()
 {
-
+	ui->txtName->setEnabled(false);
 	ui->btnOk->setEnabled(false);
 	ui->btnCancel->setEnabled(false);
-	ui->txtName->setEnabled(false);
-	ui->txtEmail->setEnabled(false);
-	ui->txtPhone->setEnabled(false);
-	ui->txtCompany->setEnabled(false);
 
 	HttpRequest* req = new HttpRequest(this, SLOT(slotRequest_finished(HttpRequest*)));
 	req->addHeader("Authorization", authToken);
 	req->addVariable("name", ui->txtName->text());
-	req->addVariable("email", ui->txtEmail->text());
-	req->addVariable("phone", ui->txtPhone->text());
-	req->addVariable("company", ui->txtCompany->text());
-	req->exec(WWW "/providers", "POST");
+	req->addVariable("logo", "");
+	req->exec(WWW "/brands", "POST");
 }
-void AddProviderDialog::slotRequest_finished(HttpRequest* req)
+void AddBrandDialog::slotRequest_finished(HttpRequest* req)
 {
 	bool ok = false;
 
@@ -72,13 +66,9 @@ void AddProviderDialog::slotRequest_finished(HttpRequest* req)
 	{
 		QMessageBox::information(this, tr("Error"), tr("Unknown error"));
 
+		ui->txtName->setEnabled(true);
 		ui->btnOk->setEnabled(true );
 		ui->btnCancel->setEnabled(true);
-		ui->txtName->setEnabled(true);
-		ui->txtEmail->setEnabled(true);
-		ui->txtPhone->setEnabled(true);
-		ui->txtCompany->setEnabled(true);
 	}
 }
-
 

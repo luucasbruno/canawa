@@ -102,7 +102,7 @@ define('ERROR_PRODUCT___INVALID_BRAND_ID', 101);
 define('ERROR_PRODUCT___INVALID_PROVIDER_ID', 102);
 define('ERROR_PRODUCT___INVALID_CATEGORY_ID', 103);
 define('ERROR_PRODUCT___INVALID_RETAIL_PRICE', 104);
-define('ERROR_PRODUCT___INVALID_WHOLESALER_PRICE', 105);
+define('ERROR_PRODUCT___INVALID_WHOLESALE_PRICE', 105);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //

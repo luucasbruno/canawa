@@ -13,8 +13,9 @@ class AddProviderDialog : public QDialog
 {
     Q_OBJECT
 	Ui::AddProviderDialog*	ui;
+	QString					authToken;
 public:
-    explicit AddProviderDialog(QWidget *parent = 0);
+	explicit AddProviderDialog(QString token, QWidget *parent = 0);
     ~AddProviderDialog();
 private slots:
 	void accept();

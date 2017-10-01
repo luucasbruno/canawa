@@ -6,11 +6,12 @@
 
 #include <QMessageBox>
 
-AddClientDialog::AddClientDialog(QWidget *parent) :
+AddClientDialog::AddClientDialog(QString token, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AddClientDialog)
 {
     ui->setupUi(this);
+	authToken = token;
 	setMaximumHeight(sizeHint().height());
 	setMinimumHeight(sizeHint().height());
 }
@@ -28,6 +29,7 @@ void AddClientDialog::accept()
 	ui->txtLocation->setEnabled(false);
 
 	HttpRequest* req = new HttpRequest(this, SLOT(slotRequest_finished(HttpRequest*)));
+	req->addHeader("Authorization", authToken);
 	req->addVariable("name", ui->txtName->text());
 	req->addVariable("cuit", ui->txtCuit->text());
 	req->addVariable("email", ui->txtEmail->text());

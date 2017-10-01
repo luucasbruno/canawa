@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddProductDialog</class>
+ <widget class="QDialog" name="AddProductDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>514</width>
+    <height>374</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Agregar producto</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="lblName">
+     <property name="text">
+      <string>Nombre:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="4">
+    <widget class="QLineEdit" name="txtName">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="lblCategory">
+     <property name="text">
+      <string>Categoria:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <widget class="QComboBox" name="cboCategory">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QToolButton" name="btnAddCategory">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../../res/resource.qrc">
+       <normaloff>:/icons/plus.png</normaloff>:/icons/plus.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Precio minorista:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Precio mayorista</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="12" column="1">
+    <widget class="QPushButton" name="btnOk">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Ok</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="2" colspan="2">
+    <widget class="QPushButton" name="btnCancel">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="4">
+    <widget class="QDoubleSpinBox" name="spinBoxPrice1">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="4">
+    <widget class="QDoubleSpinBox" name="spinBoxPrice2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QLabel" name="lblBrand">
+     <property name="text">
+      <string>Marca:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Proveedor:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="0" colspan="3">
+    <widget class="QComboBox" name="cboProviders">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="3">
+    <widget class="QToolButton" name="btnAddProvider">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../../res/resource.qrc">
+       <normaloff>:/icons/plus.png</normaloff>:/icons/plus.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="3">
+    <widget class="QToolButton" name="btnAddBrand">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../../res/resource.qrc">
+       <normaloff>:/icons/plus.png</normaloff>:/icons/plus.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0" colspan="3">
+    <widget class="QComboBox" name="cboBrand">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>txtName</tabstop>
+  <tabstop>cboCategory</tabstop>
+  <tabstop>btnAddCategory</tabstop>
+  <tabstop>spinBoxPrice1</tabstop>
+  <tabstop>spinBoxPrice2</tabstop>
+  <tabstop>cboProviders</tabstop>
+  <tabstop>btnAddProvider</tabstop>
+  <tabstop>btnOk</tabstop>
+  <tabstop>btnCancel</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../res/resource.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>btnOk</sender>
+   <signal>clicked()</signal>
+   <receiver>AddProductDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>386</x>
+     <y>296</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>256</x>
+     <y>158</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>AddProductDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>467</x>
+     <y>296</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>256</x>
+     <y>158</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnAddCategory</sender>
+   <signal>clicked()</signal>
+   <receiver>AddProductDialog</receiver>
+   <slot>slotAddCategory()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>493</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>256</x>
+     <y>158</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnAddProvider</sender>
+   <signal>clicked()</signal>
+   <receiver>AddProductDialog</receiver>
+   <slot>slotAddProvider()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>493</x>
+     <y>267</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>256</x>
+     <y>158</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnAddBrand</sender>
+   <signal>clicked()</signal>
+   <receiver>AddProductDialog</receiver>
+   <slot>slotAddBrand()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>489</x>
+     <y>258</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>256</x>
+     <y>186</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slotAddCategory()</slot>
+  <slot>slotAddProvider()</slot>
+  <slot>slotAddBrand()</slot>
+ </slots>
+</ui>
