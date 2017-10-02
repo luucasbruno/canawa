@@ -1,81 +1,24 @@
-
-function createTable(container, rows, columns, getTableItem){
-	let s = '';
-	
-	s += '<div class="panel-body">';
-		s += '<table class="table table-striped table-bordered table-hover">';
-			s += '<thead>';
-				s += '<tr>';
-					for(i = 0; i < columns.length; i++){
-						s += '<th>'+columns[i]+'</th>';
-					}
-				s += '</tr>';
-			s += '</thead>';
-
-			s += '<tbody>';
-			for(i = 0; i < rows; i++)
-			{
-				s += '<tr class="odd gradeX">';
-				for(j = 0; j < columns.length; j++)
-				{
-					s += '<td>'+getTableItem(j,i)+'</td>';
-				}
-				s += '</tr>';
-			}
-			s += '</tbody>';
-		s += '</table>';
-	s += '</div>';
-	
-	container.append(s);
-}
-
-function createAdvancedTable(container, rows, columns, getTableItem){
+function createTable(container,columns,id,data){
 	let s = `
 	<div class="panel-body">
-		<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
-			<thead>
-				<tr>`;
-					for(i = 0; i < columns.length; i++)
-					{
-						s += '<th>'+columns[i]+'</th>';
-					}
-					s += `
-				</tr>
-			</thead>
-			<tbody>
-				`;
-				for(i = 0; i < rows; i++)
-				{
-				s += '<tr class="odd gradeX">';
-					for(j = 0; j < columns.length; j++)
-					{
-						s += '<td>'+getTableItem(j,i)+'</td>';
-					}
-				s += '</tr>';
-				}
-				
-			s += `
-			</tbody>
-		</table>
+		<table width="100%" class="table table-striped table-bordered table-hover" id="dataTable-`+id+`"></table>
 	</div>
 	`;
 	container.html(s);
 
-
 	///----------- Inicialización de las dataTables
 	$(document).ready(function() {
-		var table = $('#dataTables').DataTable({
-			stateSave: true
+		var table = $('#dataTable-'+id).DataTable({
+			data: data,
+			stateSave: true,
+			columns: columns
 		});
-		$('#dataTables tbody').on('click', 'tr', function(){
-			$(this).toggleClass('selected');
-		});
-		$('#submit-products').click( function (){
-			let data = table.rows('.selected').data(); // array con los datos de las filas que fueron seleccionadas
-			alert( data[0][0]  );
-		} );
+
+	table.on('click', 'tr', function(){
+		$(this).toggleClass('selected');
+	});
+	$('#submit-'+id).click( function (){
+		let rows = table.rows('.selected').data(); // array con los datos de las filas que fueron seleccionadas
 	} );
+} );
 }
-
-
-

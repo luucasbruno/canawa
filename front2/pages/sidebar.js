@@ -47,19 +47,17 @@ function initSideBar(nav){
 
 	// Agrega Item Marcas
 	addMenuItem(menu, 'fa-bookmark', 'Marcas', function(){
-		api.getAllBrands(function(json)
-		{
+		api.getAllBrands(function(data){
 			initContentPanel('Marcas', function(container){
-				createAdvancedTable(
+				createTable(
 					container,
-					json.brands.length,
-					["#", "Nombre" ],
-					function(col, row)
-					{
-						if(col == 0)
-							return json.brands[row].id;
-						return json.brands[row].name;
-					});
+					columnas = [
+						{title: "#", data: "id"},
+						{title: "Nombre", data: "name"}
+					],
+					'brands',
+					data.brands
+				);
 			});
 		});
 
@@ -67,18 +65,17 @@ function initSideBar(nav){
 
 	// Agrega Item Categorías
 	addMenuItem(menu, 'fa-tags', 'Categorías', function(){
-		api.getAllCategories(function(json){
+		api.getAllCategories(function(data){
 			initContentPanel('Categorías', function(container){
-				createAdvancedTable(
+				createTable(
 					container,
-					json.categories.length,
-					["#", "Descripción" ],
-					function(col, row)
-					{
-						if(col == 0)
-							return json.categories[row].id;
-						return json.categories[row].description;
-					});
+					columnas = [
+						{title: "#", data: "id"},
+						{title: "Descripción", data: "description"}
+					],
+					'categories',
+					data.categories
+				);
 			});
 		});
 
@@ -86,22 +83,21 @@ function initSideBar(nav){
 	
 	// Agrega Item Clientes
 	addMenuItem(menu, 'fa-users', 'Clientes', function(){
-		api.getAllClients(function(json){
+		api.getAllClients(function(data){
 			initContentPanel('Clientes', function(container){
-				createAdvancedTable(
+				createTable(
 					container,
-					json.clients.length,
-					["#", "Nombre", "CUIT", "Correo electrónico", "Teléfono", "Dirección" ],
-					function(col, row)
-					{
-						if(col == 0)	return json.clients[row].id;
-						if(col == 1)	return json.clients[row].name;
-						if(col == 2)	return json.clients[row].cuit;
-						if(col == 3)	return json.clients[row].email;
-						if(col == 4)	return json.clients[row].phone;
-						if(col == 5)	return json.clients[row].location;
-						return "";
-					});
+					columnas = [
+						{title: "#", data: "id"},
+						{title: "Nombre", data: "name"},
+						{title: "CUIT", data: "cuit"},
+						{title: "Correo electrónico", data: "email"},
+						{title: "Teléfono", data:"phone"},
+						{title: "Dirección", data: "location"},
+					],
+					'clients',
+					data.clients
+					);
 			});
 		});
 
@@ -109,23 +105,22 @@ function initSideBar(nav){
 
 	// Agrega Item Productos
 	addMenuItem(menu, 'fa-th-list', 'Productos', function(){
-		api.getAllProducts(function(json){
+		api.getAllProducts(function(data){
 			initContentPanel('Products', function(container){
-				createAdvancedTable(
+				createTable(
 					container,
-					json.products.length,
-					["#", "Nombre", "Marca", "Proveedor", "Precio minorista", "Precio mayorista" ],
-					function(col, row)
-					{
-						if(col == 0)	return json.products[row].id;
-						if(col == 1)	return json.products[row].name;
-						if(col == 2)	return json.products[row].brand;
-						if(col == 3)	return json.products[row].provider;
-						if(col == 4)	return json.products[row].retail_price;
-						if(col == 5)	return json.products[row].wholesale_price;
-						return "";
-					});
-				let btnSubmit = $('<button type="button" id="submit-products" class="btn btn-success">Success</button>');
+					columnas = [
+						{title: "#", data: "id"},
+						{title: "Nombre", data: "name"},
+						{title: "Marca", data: "brand"},
+						{title: "Proveedor", data: "provider"},
+						{title: "Precio minorista", data:"retail_price"},
+						{title: "Precio mayorista", data: "wholesale_price"},
+					],
+					'products',
+					data.products
+				);
+			let btnSubmit = $('<button type="button" id="submit-products" class="btn btn-success">Success</button>');
 				container.append(btnSubmit);
 				
 				
@@ -136,43 +131,40 @@ function initSideBar(nav){
 
 	// Agrega Item Proveedores
 	addMenuItem(menu, 'fa-truck', 'Proveedores', function(){
-		api.getAllProviders(function(json){
+		api.getAllProviders(function(data){
 			initContentPanel('Providers', function(container){
-				createAdvancedTable(
+				createTable(
 					container,
-					json.providers.length,
-					["#", "Nombre", "Correo electrónico", "Teléfono", "Companía" ],
-					function(col, row){
-						if(col == 0)	return json.providers[row].id;
-						if(col == 1)	return json.providers[row].name;
-						if(col == 2)	return json.providers[row].email;
-						if(col == 3)	return json.providers[row].phone;
-						if(col == 4)	return json.providers[row].company;
-						return "";
-				});
-				
-			
+					columnas = [
+						{title: "#", data: "id"},
+						{title: "Nombre", data: "name"},
+						{title: "Correo electrónico", data: "email"},
+						{title: "Teléfono", data:"phone"},
+						{title: "Compañía", data: "company"},
+					],
+					'providers',
+					data.providers
+					);
 				});
 		});
 	});
 
 	// Agrega Item Ventas
 	addMenuItem(menu, 'fa-shopping-cart', 'Ventas', function(){
-		api.getAllSales(function(json){
+		api.getAllSales(function(data){
 			initContentPanel('Ventas', function(container){
-				createAdvancedTable(
+				createTable(
 					container,
-					json.sales.length,
-					["#", "Usuario", "Cliente", "Total", "Timestamp" ],
-					function(col, row)
-					{
-						if(col == 0)	return json.sales[row].id;
-						if(col == 1)	return json.sales[row].user;
-						if(col == 2)	return json.sales[row].client;
-						if(col == 3)	return json.sales[row].total;
-						if(col == 4)	return json.sales[row].timestamp;
-						return "";
-					});
+					columnas = [
+						{title: "#", data: "id"},
+						{title: "Usuario", data: "user"},
+						{title: "Cliente", data: "client"},
+						{title: "Total", data: "total"},
+						{title: "Fecha", data:"timestamp"},
+					],
+					'sales',
+					data.sales
+				);
 			});
 		});
 	});
