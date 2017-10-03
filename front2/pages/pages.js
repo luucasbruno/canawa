@@ -1,0 +1,5 @@
+function createPage(name) {
+	return{
+		
+	}
+}

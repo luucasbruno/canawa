@@ -2,7 +2,7 @@
 /**
  * Iniciar panel principal de administración
  */
-function crearAdminPanel(){
+function createAdminPanel(){
 	return{
 		nav: $('<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0"></nav>'),
 		wrapper: $('#wrapper'),
@@ -87,12 +87,13 @@ function initContentPanel(title, filler){
 //-------- Ejecucion-----------//
 if(getCookie('token') != '')
 {
-	var adminPanel = crearAdminPanel();
+	var adminPanel = createAdminPanel();
 	adminPanel.render();
 }
 else
 {
-	initLoginPanel();
+	var loginPanel = createLoginPanel();
+	loginPanel.render();
 }
 
 

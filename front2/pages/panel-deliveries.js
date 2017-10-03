@@ -1,27 +1,29 @@
-/**
+ /**
  * Iniciar panel de entregas
  *
  * @param {string} type - Tipo de panel. Los valores válidos son: today,delayed,pending.
  */
-function initDeliveriesPanel(type)
-{
+function initDeliveriesPanel(type){
 	let init = function(title, json)
 	{
 		initContentPanel(title, function(container)
 		{
-			createAdvancedTable(
-				container,
-				json.deliveries.length,
-				["#", "#Venta", "Fecha", "Dirección", "Entregado" ],
-				function(col, row)
-				{
-					if(col == 0)	return json.deliveries[row].id;
-					if(col == 1)	return json.deliveries[row].sale_id;
-					if(col == 2)	return json.deliveries[row].date;
-					if(col == 3)	return json.deliveries[row].location;
-					if(col == 4)	return json.deliveries[row].delivered == 1 ? "Si" : "No";
-					return "";
-				});
+			createTable(
+					container,
+					columnas = [
+						{title: "#", data: "id"},
+						{title: "#Venta", data: "sale_id"},
+						{title: "Fecha", data: "date"},
+						{title: "Dirección", data: "tlocation"},
+						{title: "Entregado", data:"delivered"
+						 render: function(isDelivered){
+						 	return(isDelivered==1 ? "Si" : "No");
+						 }
+						}
+					],
+					'deliveries',
+					json.deliveries
+				);
 		});
 	}
 	if(type == 'today')
