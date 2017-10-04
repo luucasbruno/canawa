@@ -14,8 +14,8 @@ function initDeliveriesPanel(type){
 						{title: "#", data: "id"},
 						{title: "#Venta", data: "sale_id"},
 						{title: "Fecha", data: "date"},
-						{title: "Dirección", data: "tlocation"},
-						{title: "Entregado", data:"delivered"
+						{title: "Dirección", data: "location"},
+						{title: "Entregado", data:"delivered",
 						 render: function(isDelivered){
 						 	return(isDelivered==1 ? "Si" : "No");
 						 }

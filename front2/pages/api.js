@@ -95,6 +95,20 @@ var API = (function(){
 	API.prototype.getDelayedDeliveries = function(callback){
 		ajax("/deliveries", GET, callback, {'mode' : 'delayed'});
 	}
+	API.prototype.get = function(type,callback){
+		switch(type){
+			case 'brands': API.prototype.getAllBrands(callback); break;
+			case 'categories': API.prototype.getAllCategories(callback); break;
+			case 'clients': API.prototype.getAllClients(callback); break;
+			case 'products': API.prototype.getAllProducts(callback); break;
+			case 'suppliers': API.prototype.getAllProviders(callback); break;
+			case 'sales': API.prototype.getAllSales(callback); break;
+			case 'todayDeliveries': API.prototype.getTodayDeliveries(callback); break;
+			case 'delayedDeliveries': API.prototype.getDelayedDeliveries(callback); break;
+			case 'pendingDeliveries': API.prototype.getPendingDeliveries(callback); break;
+		}
+		
+	};
 	return API;
 }());
 

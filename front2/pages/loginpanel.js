@@ -29,7 +29,7 @@
 				</div>
 			</div>`,
 		render: function(){
-				$(document.body).html(page);
+				$(document.body).html(this.page);
 
 				$('#form').on('submit', function(){
 					api.login($('#username').val(), $('#password').val(), function(json)

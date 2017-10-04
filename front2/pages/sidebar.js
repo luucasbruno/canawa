@@ -2,72 +2,67 @@
  * Iniciar panel de navegación (menú)
  */
  function createSideBar(container){
- 	return{
- 		html: $(`
+	var sidebar = $(`
 					<div class="navbar-default sidebar" role="navigation">
 						<div class="sidebar-nav navbar-collapse">
 							<ul class="nav" id="side-menu">
 							</ul>
 						</div>
-					</div>`),
+					</div>`);
+	var self = {	
  		menu: sidebar.find('#side-menu'),
- 		pages:{
- 			Inicio: createPage('inicio'),
- 			Perfil: createPage('perfil')
- 			Marcas: createPage('marcas'),
- 			Productos: createPage('productos')
- 			Proveedores: createPage('proveedores')
- 			Ventas: createPage('ventas')
- 			Entregas: createPage('entregas')
- 			Categorías: createPage('categorías')
- 		},
- 		addMenuItem: function(this.menu, icon, label, pages){
+		initContent: function(title, filler){
+			let header = $("#page-header");
+			let content = $("#page-content");
+			
+			header.html(title);
+			content.html('');
+			if(filler)
+				filler(content);
+		},
+		pageInvoker: createPageInvoker(),
+ 		addMenuItem: function(menu, icon, label, render_callback){
  			let li = $('<li><a href="javascript:void(0)"><i class="fa '+icon+' fa-fw"></i> '+label+'</a></li>');
-			if(click)
-				li.on('click', pages[label]);
+			if(render_callback)
+				li.on('click', render_callback);
 			menu.append(li);
  		},
- 		addSubMenu: function(id, this.menu, icon, label, filler){
+ 		addSubMenu: function(id, menu, icon, label, filler){
  			let li = $('<li><a href="javascript:void(0)"><i class="fa '+icon+' fa-fw"></i> '+label+'<span class="fa arrow"></span></a></li>');
 			let ul = $('<ul class="nav nav-second-level"></ul>');
 			filler(ul);
 			li.append(ul);
 			menu.append(li);
  		},
- 		addSubMenuItem: function(this.menu,label,click){
+ 		addSubMenuItem: function(menu,label,render_callback){
  			let li = $('<li><a href="javascript:void(0)">'+label+'</a></li>');
-			if(click)
-				li.on('click', click);
+			if(render_callback)
+				li.on('click', render_callback);
 			menu.append(li);
 
  		},
  		render: function(){
- 			this.addMenuItem(this.menu, 'fa-home', 'Inicio',this.pages);
- 			this.addMenuItem(this.menu, 'fa-home', 'Marcas',this.pages);
- 			this.addMenuItem(this.menu, 'fa-home', 'Productos',this.pages);
- 			this.addMenuItem(this.menu, 'fa-home', 'Proveedores',this.pages);
- 			this.addMenuItem(this.menu, 'fa-home', 'Ventas',this.pages);
- 			this.addMenuItem(this.menu, 'fa-home', 'Entregas',this.pages);
- 			this.addMenuItem(this.menu, 'fa-home', 'Categorías',this.pages);
- 			this.addSubMenu('deliveries', this.menu, 'fa-car', 'Entregas', function(submenu){
+ 			self.addMenuItem(self.menu, 'fa-home', 'Inicio',self.pageInvoker.render('inicio'));
+ 			self.addMenuItem(self.menu, 'fa-bookmark', 'Marcas',self.pageInvoker.render('marcas'));
+			self.addMenuItem(self.menu, 'fa-tags', 'Categorías',self.pageInvoker.render('categorias'));
+			self.addMenuItem(self.menu, 'fa-users', 'Clientes',self.pageInvoker.render('clientes'));
+			self.addMenuItem(self.menu, 'fa-th-list', 'Productos',self.pageInvoker.render('productos'));
+ 			self.addMenuItem(self.menu, 'fa-truck', 'Proveedores',self.pageInvoker.render('proveedores'));
+ 			self.addMenuItem(self.menu, 'fa-shopping-cart', 'Ventas',self.pageInvoker.render('ventas')); 			
+ 			self.addSubMenu('deliveries', self.menu, 'fa-car', 'Entregas', function(submenu){
 		
-				addSubMenuItem(submenu, "Hoy", function(){
-					initDeliveriesPanel('today');
-				});
-				addSubMenuItem(submenu, "Atrasadas", function(){
-					initDeliveriesPanel('delayed');
-				});
-				addSubMenuItem(submenu, "Pendientes", function(){
-					initDeliveriesPanel('pending');
-				});
+				self.addSubMenuItem(submenu, "Hoy", self.pageInvoker.render('entregasHoy'));
+				self.addSubMenuItem(submenu, "Atrasadas",self.pageInvoker.render('entregasAtrasadas'));
+				self.addSubMenuItem(submenu, "Pendientes", self.pageInvoker.render('entregasPendientes'));
 			});
-			this.nav.append(this.sidebar);
+			container.append(sidebar);
 
  		}
- 	}
+	 }
+	 return self;
 
  }
-
+/*
 function initSideBar(nav){
 	
 	//-------------- Declaraciones ------------//
@@ -248,6 +243,6 @@ function initSideBar(nav){
 			initDeliveriesPanel('pending');
 		});
 	});
-	*/
+	
 	nav.append(sidebar);
-}
+}*/
