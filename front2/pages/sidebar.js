@@ -144,8 +144,8 @@ function initSideBar(nav){
 					],
 					'providers',
 					data.providers
-					);
-				});
+				);
+			});
 		});
 	});
 
