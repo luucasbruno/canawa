@@ -1,6 +1,73 @@
 /**
  * Iniciar panel de navegación (menú)
  */
+ function createSideBar(container){
+ 	return{
+ 		html: $(`
+					<div class="navbar-default sidebar" role="navigation">
+						<div class="sidebar-nav navbar-collapse">
+							<ul class="nav" id="side-menu">
+							</ul>
+						</div>
+					</div>`),
+ 		menu: sidebar.find('#side-menu'),
+ 		pages:{
+ 			Inicio: createPage('inicio'),
+ 			Perfil: createPage('perfil')
+ 			Marcas: createPage('marcas'),
+ 			Productos: createPage('productos')
+ 			Proveedores: createPage('proveedores')
+ 			Ventas: createPage('ventas')
+ 			Entregas: createPage('entregas')
+ 			Categorías: createPage('categorías')
+ 		},
+ 		addMenuItem: function(this.menu, icon, label, pages){
+ 			let li = $('<li><a href="javascript:void(0)"><i class="fa '+icon+' fa-fw"></i> '+label+'</a></li>');
+			if(click)
+				li.on('click', pages[label]);
+			menu.append(li);
+ 		},
+ 		addSubMenu: function(id, this.menu, icon, label, filler){
+ 			let li = $('<li><a href="javascript:void(0)"><i class="fa '+icon+' fa-fw"></i> '+label+'<span class="fa arrow"></span></a></li>');
+			let ul = $('<ul class="nav nav-second-level"></ul>');
+			filler(ul);
+			li.append(ul);
+			menu.append(li);
+ 		},
+ 		addSubMenuItem: function(this.menu,label,click){
+ 			let li = $('<li><a href="javascript:void(0)">'+label+'</a></li>');
+			if(click)
+				li.on('click', click);
+			menu.append(li);
+
+ 		},
+ 		render: function(){
+ 			this.addMenuItem(this.menu, 'fa-home', 'Inicio',this.pages);
+ 			this.addMenuItem(this.menu, 'fa-home', 'Marcas',this.pages);
+ 			this.addMenuItem(this.menu, 'fa-home', 'Productos',this.pages);
+ 			this.addMenuItem(this.menu, 'fa-home', 'Proveedores',this.pages);
+ 			this.addMenuItem(this.menu, 'fa-home', 'Ventas',this.pages);
+ 			this.addMenuItem(this.menu, 'fa-home', 'Entregas',this.pages);
+ 			this.addMenuItem(this.menu, 'fa-home', 'Categorías',this.pages);
+ 			this.addSubMenu('deliveries', this.menu, 'fa-car', 'Entregas', function(submenu){
+		
+				addSubMenuItem(submenu, "Hoy", function(){
+					initDeliveriesPanel('today');
+				});
+				addSubMenuItem(submenu, "Atrasadas", function(){
+					initDeliveriesPanel('delayed');
+				});
+				addSubMenuItem(submenu, "Pendientes", function(){
+					initDeliveriesPanel('pending');
+				});
+			});
+			this.nav.append(this.sidebar);
+
+ 		}
+ 	}
+
+ }
+
 function initSideBar(nav){
 	
 	//-------------- Declaraciones ------------//
@@ -129,7 +196,7 @@ function initSideBar(nav){
 
 	});
 
-	// Agrega Item Proveedores
+	// Agrega Item Proveedores 
 	addMenuItem(menu, 'fa-truck', 'Proveedores', function(){
 		api.getAllProviders(function(data){
 			initContentPanel('Providers', function(container){
@@ -181,6 +248,6 @@ function initSideBar(nav){
 			initDeliveriesPanel('pending');
 		});
 	});
-	
+	*/
 	nav.append(sidebar);
 }
